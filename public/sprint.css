@@ -1,0 +1,48 @@
+.headSprint {
+    background : rgb(179, 124, 133);
+}
+
+.loginColor {
+    background: rgb(92, 58, 97);
+}
+
+.infoSprint {
+    padding-left: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.idFont {
+    padding-left:5%;
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
+
+.mdpFont {
+    padding-left:5%;
+    padding-top: 2%;
+    padding-bottom: 5%;
+}
+
+
+#inputLogin {
+    border-radius: 10px;
+    font-style: italic;
+    border-color: transparent;
+    width:75%;
+}
+
+.characterFont {
+    font-family: "Courier New", monospace;
+    font-size:2rem;
+}
+
+.loginCharacterFont {
+    font-family: "Open Sans";
+    font-weight: lighter;
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+}
