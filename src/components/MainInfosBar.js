@@ -9,13 +9,6 @@ class MainInfosBar extends Component {
     this.handleDateClick = this.handleDateClick.bind(this);
   }
 
-  callAPI() {
-      /*fetch("http://localhost:9000/testAPI/buttonClicked")
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }))
-          .catch(err => err);*/
-  }
-
   handleTitleClick() {
     this.setState({title: this.state.title + 'a'})
   }

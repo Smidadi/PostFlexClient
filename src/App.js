@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import KanbanColumn from './components/KanbanColumn';
+import ProductBacklog from './components/ProductBacklog';
 import Authentification from './components/Authentification';
 import MainInfosBar from './components/MainInfosBar';
-import Sprint from './components/Sprint';
+import SprintColumn from './components/SprintColumn';
 
 class App extends Component {
 
@@ -26,26 +27,26 @@ class App extends Component {
 
   render() {
     return (
-<div>
-<header>
-<div class="container-fluid">
-    <div class="row">
-      <MainInfosBar />
-      <Authentification />
+    <div>
+      <header>
+      <div className="container-fluid">
+          <div class="row">
+            <MainInfosBar />
+            <Authentification />
+          </div>
+      </div>
+      </header>
+      <div className="container-fluid">
+      <div className="row border border-dark">
+          <ProductBacklog />
+          <div className="col-8">
+              <div className="row">
+                <SprintColumn />
+              </div>
+          </div>
+      </div>
+      </div>
     </div>
-</div>
-</header>
-<div class="container-fluid">
-<div class="row border border-dark">
-    <KanbanColumn />
-    <div class="col-8">
-        <div class="row">
-           <Sprint />
-        </div>
-    </div>
-</div>
-</div>
-</div>
     )
   }
 }

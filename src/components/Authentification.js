@@ -7,13 +7,6 @@ class Authentification extends Component {
     this.state = { userID: 'userID', password: 'password'};
   }
 
-  callAPI() {
-      /*fetch("http://localhost:9000/testAPI/buttonClicked")
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }))
-          .catch(err => err);*/
-  }
-
   render() {
     return (
         <div class="col-3 loginColor loginCharacterFont">
