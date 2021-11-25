@@ -38,6 +38,7 @@ class App extends Component {
 <div class="container-fluid">
 <div class="row border border-dark">
     <KanbanColumn />
+  <div class="col-1"></div>
     <div class="col-8">
         <div class="row">
            <Sprint />
