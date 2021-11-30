@@ -33,6 +33,13 @@ class Authentification extends Component {
                     <input type="text" placeholder={this.state.password} id="inputMdp"/>
                 </div>
             </div>
+            <div class="row validate">
+                <div class="col">
+                    <div class="text-center align-middle" id="valid">
+                        <button>Connexion</button>
+                    </div>
+                </div>
+            </div>
         </div>
     )
   }
