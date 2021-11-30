@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
 class MainInfosBar extends Component {
-  
   
   constructor(props) {
     super(props);
@@ -14,13 +12,6 @@ class MainInfosBar extends Component {
       dateInput: ''
     };
   }
-  
-  callAPI() {
-    /*fetch("http://localhost:9000/testAPI/buttonClicked")
-    .then(res => res.text())
-    .then(res => this.setState({ apiResponse: res }))
-          .catch(err => err);*/
-        }
         
   isDate = (date) => {
     return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));

@@ -1,17 +1,33 @@
 import React, { Component } from 'react';
-
+import myDB from './../users.json'
 class Authentification extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { userID: 'userID', password: 'password'};
+    this.state = {
+        idInput:'',
+        passwordInput:'',
+    };
   }
 
-  callAPI() {
-      /*fetch("http://localhost:9000/testAPI/buttonClicked")
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }))
-          .catch(err => err);*/
+  handleAuthentificationSubmit = (event) => {
+    event.preventDefault()
+    myDB.users.forEach(element => {
+        if(this.state.idInput === element.id && this.state.passwordInput === element.password)
+            console.log("CONNECTED")
+        else
+            alert("Wrong password.")
+    });
+  }
+
+  handleIdChange = (event) => {
+    const value = event.currentTarget.value
+    this.setState({idInput: value})
+  }
+
+  handlePasswordChange = (event) => {
+    const value = event.currentTarget.value
+    this.setState({passwordInput: value})
   }
 
   render() {
@@ -22,7 +38,7 @@ class Authentification extends Component {
                     <div id="id">Identifiant</div> 
                 </div>
                 <div class="col-8">
-                    <input type="text" placeholder={this.state.userID} id="inputLogin"/>
+                    <input value={this.state.idInput} onChange={this.handleIdChange} type="text" placeholder="username" id="inputLogin"/>
                 </div>
             </div>
             <div class="row mdpFont">
@@ -30,13 +46,13 @@ class Authentification extends Component {
                     <div id="mdp">Mot de passe</div>
                 </div>
                 <div class="col-8">
-                    <input type="text" placeholder={this.state.password} id="inputMdp"/>
+                    <input value={this.state.passwordInput} onChange={this.handlePasswordChange} type="password" placeholder="password" id="inputMdp"/>
                 </div>
             </div>
             <div class="row validate">
                 <div class="col">
                     <div class="text-center align-middle" id="valid">
-                        <button>Connexion</button>
+                        <button onClick={this.handleAuthentificationSubmit}>Connexion</button>
                     </div>
                 </div>
             </div>
