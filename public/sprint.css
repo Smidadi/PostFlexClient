@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 .headSprint {
     background : rgb(179, 124, 133);
 }
@@ -32,6 +36,13 @@
     width:75%;
 }
 
+#inputMdp {
+    border-radius: 10px;
+    font-style: italic;
+    border-color: transparent;
+    width:75%;
+}
+
 .characterFont {
     font-family: "Courier New", monospace;
     font-size:2rem;
@@ -45,4 +56,14 @@
 .icon {
     height: 20px;
     width: 20px;
+}
+
+.column {
+    border-radius: 10px;
+    margin:2vh;
+    padding:50%;
+    padding-left:50%;
+    padding-right:50%;
+
+    min-height: 80vh ;
 }
