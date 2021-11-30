@@ -36,6 +36,11 @@ class Authentification extends Component {
     this.setState({idInput:'', passwordInput:'', signup: false, connected: false, userConnected: ''})
   }
 
+  handleBackSubmit = (event) => {
+    event.preventDefault()
+    this.setState({idInput:'', passwordInput:'', signup: false, connected: false, userConnected: ''})
+  }
+
   handleIdChange = (event) => {
     const value = event.currentTarget.value
     this.setState({idInput: value})
@@ -48,10 +53,15 @@ class Authentification extends Component {
 
   handleAddUserSubmit = (event) => {
     event.preventDefault()
-    myDB.users.forEach(element => {
-        if(this.state.idInput === element.id)
+    let userAllowed = true
+    myDB.users.forEach((element) => {
+        if(this.state.idInput === element.id){
             alert("This user already exists.")
-        else if(this.state.passwordInput.length < 6)
+            userAllowed = false
+        }
+    });
+    if(userAllowed){
+        if(this.state.passwordInput.length < 6)
             alert("Password too short, need 6 characters minimum.")
         else{
             myDB.users[myDB.users.length] = {
@@ -60,7 +70,7 @@ class Authentification extends Component {
             }
             this.setState({idInput: '', passwordInput: '', signup:false})
         }
-    });
+    }
   }
 
   render() {
@@ -93,6 +103,9 @@ class Authentification extends Component {
             <div class="row" hidden={this.state.connected}>
                 <div class="col text-center">
                     <button onClick={this.handleAddUserSubmit} hidden={!this.state.signup}>Confirm</button>
+                </div>
+                <div class="col text-center">
+                    <button onClick={this.handleBackSubmit} hidden={!this.state.signup}>Back</button>
                 </div>
             </div>
             <div class="row" hidden={!this.state.connected}>
