@@ -12,10 +12,21 @@ class Sprint extends Component {
 
   render() {
     return (
-        <div>
-            {this.state.id}
-            {this.state.title}
+      <div>
+        <div class="col-3 column text-center">
+          Sprint n°{this.state.id}
         </div>
+        <div class="col-3 column">
+          <div class="row placeInfos justify-content-center">
+            kanban
+          </div>
+        </div>
+        <div class="col-3 column">
+          <div class="row placeInfos justify-content-center">
+            planning
+          </div>
+        </div>
+      </div>
     )
   }
 }

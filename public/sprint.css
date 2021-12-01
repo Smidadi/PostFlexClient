@@ -134,3 +134,6 @@ html, body {
     padding: 40%;
 }
 
+.resizeSprint {
+    min-width: 90%;
+}

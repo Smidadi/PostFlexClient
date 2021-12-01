@@ -7,13 +7,6 @@ class KanbanColumn extends Component {
     this.state = { title: 'Product backlog', max: 100, postits: ''};
   }
 
-  callAPI() {
-      /*fetch("http://localhost:9000/testAPI/buttonClicked")
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }))
-          .catch(err => err);*/
-  }
-
   setTitle(title) {
       this.setState({title: title});
   }
@@ -32,7 +25,6 @@ class KanbanColumn extends Component {
           +
         </div>
       </div>
-
     )
   }
 }

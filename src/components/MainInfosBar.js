@@ -26,6 +26,8 @@ class MainInfosBar extends Component {
     const title = this.state.titleInput
     if(title === '')
       alert("You can not put an empty title.")
+    else if(title.length > 20)
+      alert("Title max length is 20 caracters.")
     else
       this.setState({title: title, titleModifying: false, titleInput: ''})
   }
@@ -43,7 +45,7 @@ class MainInfosBar extends Component {
     event.preventDefault()
     const date = this.state.dateInput
     if(!this.isDate(date))
-      alert("This is not a date format. Try JJ/MM/YYYY")
+      alert("This is not a date format. Try MM/JJ/YYYY")
     else
       this.setState({date: date, dateModifying: false, dateInput: ''})
   }
