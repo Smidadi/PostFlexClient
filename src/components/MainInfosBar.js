@@ -26,7 +26,7 @@ class MainInfosBar extends Component {
     const title = this.state.titleInput
     if(title === '')
       alert("You can not put an empty title.")
-    else if(title > 20)
+    else if(title.length > 20)
       alert("Title max length is 20 caracters.")
     else
       this.setState({title: title, titleModifying: false, titleInput: ''})
