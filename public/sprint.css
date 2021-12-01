@@ -19,13 +19,13 @@ html, body {
 }
 
 .idFont {
-    padding-left:5%;
+    padding-left:10%;
     padding-top: 5%;
     padding-bottom: 2%;
 }
 
 .mdpFont {
-    padding-left:5%;
+    padding-left:10%;
     padding-top: 2%;
     padding-bottom: 5%;
 }
@@ -55,28 +55,69 @@ html, body {
     font-weight: lighter;
 }
 
+.connectedMsg {
+    color:white;
+    font-family: "Open Sans";
+    font-weight: lighter;
+    font-size: 2rem;
+    padding-left:5%;
+}
+
 .icon {
     height: 20px;
     width: 20px;
 }
 
-.signButton {
+.allButton {
     background-color: white;
     border: 0;
     border-radius: 10px;
     text-align: center;
-    width: 80%;
     border:1px solid transparent; 
     -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
     transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    cursor: pointer;
 
-    margin-left:10%;
-    margin-top: 5%;
-    margin-bottom: 2%;
+    font-family: "Open Sans";
+    font-weight: lighter;
 }
 
-.signButton:hover {
-    background-color: rgb(201, 137, 190);
+.allButton:hover {
+    background-color: rgb(90, 40, 82);
+}
+
+.connexionButton {
+    width: 70%;
+    margin-left:15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.inscriptionButton {
+    width: 70%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.confirmButton {
+    width: 70%;
+    margin-left:15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.backButton {
+    width: 70%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.disconnectButton {
+    margin-left: 5%;
+    margin-top:5%;
+    margin-bottom:5%;
 }
 
 /* Product backlog */

@@ -18,12 +18,12 @@ class Authentification extends Component {
     let connect = false
     myDB.users.forEach(element => {
         if(this.state.idInput === element.id && this.state.passwordInput === element.password)
-            connect = true    
+            connect = true   
     });
         if(connect)
             this.setState({connected:true, userConnected:this.state.idInput})
         else
-            alert("Wrong password.")
+            alert("Vérifiez votre identifiant ou votre mot de passe.")
   }
 
   handleSignupSubmit = (event) => {
@@ -56,19 +56,20 @@ class Authentification extends Component {
     let userAllowed = true
     myDB.users.forEach((element) => {
         if(this.state.idInput === element.id){
-            alert("This user already exists.")
+            alert("Cet utilisateur existe déjà.")
             userAllowed = false
         }
     });
     if(userAllowed){
         if(this.state.passwordInput.length < 6)
-            alert("Password too short, need 6 characters minimum.")
+            alert("Le mot de passe est trop court, il doit contenir 6 charactères minimum.")
         else{
             myDB.users[myDB.users.length] = {
                 "id":this.state.idInput,
                 "password":this.state.passwordInput
             }
             this.setState({idInput: '', passwordInput: '', signup:false})
+            alert("Votre compte a bien été créé.")
         }
     }
   }
@@ -78,45 +79,42 @@ class Authentification extends Component {
         <div class="col-3 loginColor loginCharacterFont">
             <div class="row idFont" hidden={this.state.connected}>
                 <div class="col-4">
-                    <div id="id">Username</div> 
+                    <div class="row">Identifiant</div> 
                 </div>
                 <div class="col-8">
-                    <input value={this.state.idInput} onChange={this.handleIdChange} type="text" placeholder="username" id="inputLogin"/>
+                    <input value={this.state.idInput} onChange={this.handleIdChange} type="text" placeholder="Identifiant" id="inputLogin"/>
                 </div>
             </div>
             <div class="row mdpFont" hidden={this.state.connected}>
                 <div class="col-4">
-                    <div id="mdp">Password</div>
+                    <div class="row">Mot de passe</div>
                 </div>
                 <div class="col-8">
-                    <input value={this.state.passwordInput} onChange={this.handlePasswordChange} type="password" placeholder="password" id="inputMdp"/>
+                    <input value={this.state.passwordInput} onChange={this.handlePasswordChange} type="password" placeholder="Mot de passe" id="inputMdp"/>
                 </div>
             </div>
             <div class="row validate" hidden={this.state.connected}>
-                <div class="col-4">
-                    <button class="signButton" onClick={this.handleAuthentificationSubmit} hidden={this.state.signup}>Sign in</button>
+                <div class="col-6">
+                    <button class="allButton connexionButton" onClick={this.handleAuthentificationSubmit} hidden={this.state.signup}>Se connecter</button>
                 </div>
-                <div class="col-4 text-right">
-                    <button class="signButton" onClick={this.handleSignupSubmit} hidden={this.state.signup}>Sign up</button>
+                <div class="col-6">
+                    <button class="allButton inscriptionButton" onClick={this.handleSignupSubmit} hidden={this.state.signup}>S'inscrire</button>
                 </div>
             </div>
             <div class="row" hidden={this.state.connected}>
-                <div class="col text-center">
-                    <button onClick={this.handleAddUserSubmit} hidden={!this.state.signup}>Confirm</button>
+                <div class="col-6">
+                    <button class="allButton confirmButton" onClick={this.handleAddUserSubmit} hidden={!this.state.signup}>Confirmer</button>
                 </div>
-                <div class="col text-center">
-                    <button onClick={this.handleBackSubmit} hidden={!this.state.signup}>Back</button>
-                </div>
-            </div>
-            <div class="row" hidden={!this.state.connected}>
-                <div class="text-center">
-                    {this.state.userConnected} is connected
+                <div class="col-6">
+                    <button class="allButton backButton" onClick={this.handleBackSubmit} hidden={!this.state.signup}>Retour</button>
                 </div>
             </div>
+            <div class="row connectedMsg" hidden={!this.state.connected}>
+                {this.state.userConnected} est connecté. 
+            </div>
             <div class="row" hidden={!this.state.connected}>
-                <div class="text-center">
-                    <button onClick={this.handleDisconnectSubmit}>Disconnect</button>
-                </div>
+                <button class="allButton disconnectButton" onClick={this.handleDisconnectSubmit}>Se déconnecter</button>
+                
             </div>
         </div>
     )
