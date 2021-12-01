@@ -7,14 +7,16 @@ import Authentification from './components/Authentification';
 import MainInfosBar from './components/MainInfosBar';
 import Sprint from './components/Sprint';
 import SprintList from './components/SprintList';
-import SprintColumn from './components/SprintColumn';
+
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      apiResponse: ''
+      apiResponse: '',
+      sprintHide: false,
+      kanbanHide: true
     };
   }
 
@@ -44,9 +46,9 @@ class App extends Component {
         <div class="row border border-dark">
           <ProductBacklog />
         <div class="col-1"></div>
-          <div class="col-8">
-              <SprintList />        
-          </div>
+        <div class="col-8">
+            <SprintList />        
+        </div>
       </div>
       </div>
     </div>
