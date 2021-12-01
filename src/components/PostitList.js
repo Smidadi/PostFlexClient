@@ -8,26 +8,22 @@ class PostitList extends Component {
         super(props);
         // initial state, subject to change, first elements only here for test
         this.state = {
-            count: 3,
             postits: [
-                <Postit title="postit_title_1"/>,
-                <Postit title="postit_title_2"/>,
-                <Postit title="postit_title_3"/>
+                <Postit title="Title_1" description="Description_1" colors={["green"]}/>
             ]
         }
     }
 
     // add a Postit component to the list and update the count
-    addPostit() {
-        this.state.postits.push(<Postit title={"postit_title_" + ++this.state.count} />);
-        this.forceUpdate(); // force the render of the component again cause we updated the list
+    addPostit(title, description, colors) {
+        this.setState({postits: [...this.state.postits, <Postit title={title} description={description} colors={colors}/>]});
     }
     
     render() {
 
         return (
             <div>
-                {this.state.postits.map(component => component)} {/* get all the components from the list */}
+                {this.state.postits.map((component, index) => <li key={index}>{component}</li>)} {/* get all the components from the list */}
             </div>
         )
     }
