@@ -32,7 +32,6 @@ class KanbanColumn extends Component {
           +
         </div>
       </div>
-
     )
   }
 }
