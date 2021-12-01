@@ -93,8 +93,8 @@ class Authentification extends Component {
                 </div>
             </div>
             <div class="row validate" hidden={this.state.connected}>
-                <div class="col-4 text-right">
-                    <button onClick={this.handleAuthentificationSubmit} hidden={this.state.signup}>Sign in</button>
+                <div class="col-4">
+                    <button class="signButton" onClick={this.handleAuthentificationSubmit} hidden={this.state.signup}>Sign in</button>
                 </div>
                 <div class="col-4 text-right">
                     <button onClick={this.handleSignupSubmit} hidden={this.state.signup}>Sign up</button>

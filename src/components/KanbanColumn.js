@@ -4,7 +4,7 @@ class KanbanColumn extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { title: 'title', max: 100, postits: ''};
+    this.state = { title: 'Product backlog', max: 100, postits: ''};
   }
 
   callAPI() {
@@ -24,12 +24,15 @@ class KanbanColumn extends Component {
 
   render() {
     return (
-      <div class="col-3">
-        <div class="row"></div>
-        <div class="row column border border-black">
-            <div>{this.state.title}</div>
-          </div>
+      <div class="col-3 column">
+        <div class="row placeInfos justify-content-center">
+          {this.state.title}
+        </div>
+        <div class="row placeInfos justify-content-center">
+          +
+        </div>
       </div>
+
     )
   }
 }
