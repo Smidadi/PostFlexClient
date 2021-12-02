@@ -25,9 +25,9 @@ class MainInfosBar extends Component {
     event.preventDefault()
     const title = this.state.titleInput
     if(title === '')
-      alert("You can not put an empty title.")
+      alert("Le titre ne peut pas être vide.")
     else if(title.length > 20)
-      alert("Title max length is 20 caracters.")
+      alert("Le titre ne peut pas faire plus de 20 caractères.")
     else
       this.setState({title: title, titleModifying: false, titleInput: ''})
   }
@@ -45,7 +45,7 @@ class MainInfosBar extends Component {
     event.preventDefault()
     const date = this.state.dateInput
     if(!this.isDate(date))
-      alert("This is not a date format. Try MM/JJ/YYYY")
+      alert("Ce n'est pas le bon format. Essayez MM/JJ/AAAA")
     else
       this.setState({date: date, dateModifying: false, dateInput: ''})
   }
@@ -62,7 +62,7 @@ class MainInfosBar extends Component {
                 <div class="col-6">
                     <div class="row" id="title" hidden={this.state.titleModifying}>
                         {this.state.title}
-                        <button onClick={this.handleTitleModify}>Modify</button>
+                        <button onClick={this.handleTitleModify}>Modifier</button>
                     </div>
                         <form hidden={!this.state.titleModifying} onSubmit={this.handleTitleSubmit}>
                           <input value={this.state.titleInput} onChange={this.handleTitleChange} type="text" placeholder={this.state.title}></input>
@@ -72,7 +72,7 @@ class MainInfosBar extends Component {
                 <div class="col-6">
                     <div class="row" id="date" hidden={this.state.dateModifying}>
                         {this.state.date}
-                        <button onClick={this.handleDateModify}>Modify</button>
+                        <button onClick={this.handleDateModify}>Modifier</button>
                     </div>
                         <form hidden={!this.state.dateModifying} onSubmit={this.handleDateSubmit}>
                           <input value={this.state.dateInput} onChange={this.handleDateChange} type="text" placeholder={this.state.date}></input>

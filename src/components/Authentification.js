@@ -62,7 +62,7 @@ class Authentification extends Component {
     });
     if(userAllowed){
         if(this.state.passwordInput.length < 6)
-            alert("Le mot de passe est trop court, il doit contenir 6 charactères minimum.")
+            alert("Le mot de passe est trop court, il doit contenir 6 caractères minimum.")
         else{
             myDB.users[myDB.users.length] = {
                 "id":this.state.idInput,
