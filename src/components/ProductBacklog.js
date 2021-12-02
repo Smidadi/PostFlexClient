@@ -69,13 +69,11 @@ class ProductBacklog extends Component {
     render() {
 
         return (
-        <div class="col-3 column">
+        <div class="col-2 column">
             <div class="row placeInfos justify-content-center">
-              {this.state.title}
+                <h5>{this.state.title}</h5>
             </div>
-            <div className="row">
-                <PostitList ref={this.postitListRef} />
-            </div>
+            <PostitList ref={this.postitListRef} />
            
             <div class="row placeInfos justify-content-center">
                 {this.state.isAddingPostit == false ? // are we doing the add of another postit ?
