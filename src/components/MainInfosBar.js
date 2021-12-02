@@ -4,10 +4,10 @@ class MainInfosBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'title',
+      title: 'Titre',
       titleModifying: false,
       titleInput: '',
-      date: "date",
+      date: "Date",
       dateModifying: false,
       dateInput: ''
     };
@@ -62,21 +62,21 @@ class MainInfosBar extends Component {
                 <div class="col-6">
                     <div class="row" id="title" hidden={this.state.titleModifying}>
                         {this.state.title}
-                        <button onClick={this.handleTitleModify}>Modifier</button>
+                        <button class="modifyMainBarInfos" onClick={this.handleTitleModify}><img src="../../pen.png" width="30px" /></button>
                     </div>
                         <form hidden={!this.state.titleModifying} onSubmit={this.handleTitleSubmit}>
-                          <input value={this.state.titleInput} onChange={this.handleTitleChange} type="text" placeholder={this.state.title}></input>
-                          <button>Confirmer</button>
+                          <input value={this.state.titleInput} onChange={this.handleTitleChange} type="text" placeholder={this.state.title} id="textMainBarInfos"></input>
+                          <button class="confirmMainBarInfos modifyMainBarInfos"><img src="../../check.png" width="30px" /></button>
                         </form>
                 </div>
                 <div class="col-6">
                     <div class="row" id="date" hidden={this.state.dateModifying}>
                         {this.state.date}
-                        <button onClick={this.handleDateModify}>Modifier</button>
+                        <button class="modifyMainBarInfos" onClick={this.handleDateModify}><img src="../../pen.png" width="30px" /></button>
                     </div>
                         <form hidden={!this.state.dateModifying} onSubmit={this.handleDateSubmit}>
-                          <input value={this.state.dateInput} onChange={this.handleDateChange} type="text" placeholder={this.state.date}></input>
-                          <button>Confirmer</button>
+                          <input value={this.state.dateInput} onChange={this.handleDateChange} type="text" placeholder={this.state.date} id="textMainBarInfos"></input>
+                          <button class="confirmMainBarInfos modifyMainBarInfos"><img src="../../check.png" width="30px" /></button>
                         </form>
                 </div>
             </div>

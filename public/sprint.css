@@ -120,6 +120,23 @@ html, body {
     margin-bottom:5%;
 }
 
+.modifyMainBarInfos {
+    background: transparent;
+    border: none !important;
+    padding-left:2%;
+}
+
+#textMainBarInfos {
+    border-radius: 5px;
+    font-style: italic;
+    border-color: transparent;
+    width:35%;
+}
+
+.confirmMainBarInfos {
+    padding-left: 5%;
+}
+
 /* Product backlog */
 
 .column {
