@@ -15,8 +15,7 @@ class App extends Component {
     super(props);
     this.state = {
       apiResponse: '',
-      sprintHide: false,
-      kanbanHide: true
+      sprintHide: false
     };
   }
 
@@ -47,7 +46,12 @@ class App extends Component {
           <ProductBacklog />
         <div class="col-1"></div>
         <div class="col-8">
-            <SprintList />        
+          <div hidden={this.state.sprintHide}>
+            <SprintList />     
+          </div>
+          <div hidden={!this.state.sprintHide}>
+            <Kanban />
+          </div>
         </div>
       </div>
       </div>

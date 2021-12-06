@@ -6,15 +6,16 @@ class SprintList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sprints: [<Sprint id="0"/>]
+      sprints: [<Sprint id={Date.now()} num={0}/>]
     };
   }
  
   handleAddSprint = (event) => {
     event.preventDefault()
     const array = this.state.sprints.slice()
-    const id = array.length.toString()
-    this.setState({sprints:[...this.state.sprints, <Sprint id={id}/>]})
+    const num = array.length.toString()
+    const id = console.log(Date.now())
+    this.setState({sprints:[...this.state.sprints, <Sprint id={id} num={num}/>]})
   }
  
   render() {

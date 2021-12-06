@@ -6,13 +6,16 @@ class Kanban extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      column: []
+      id: props.id,
+      num: props.num,
+      title: "titre"
     };
+    this.postitListRef = React.createRef();
   }
  
   render() {
     return (
-      <div class="col-2 column">
+      <div class="col-3 column">
           <div class="row placeInfos justify-content-center">
               <h5>{this.state.title}</h5>
           </div>

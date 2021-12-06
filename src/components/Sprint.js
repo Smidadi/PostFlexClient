@@ -6,6 +6,7 @@ class Sprint extends Component {
     super(props);
     this.state = {
       id: props.id,
+      num: props.num,
       title: "titre"
     };
   }
@@ -14,7 +15,7 @@ class Sprint extends Component {
     return (
       <div>
         <div class="col-3 column text-center">
-          Sprint n°{this.state.id}
+          Sprint n°{this.state.num}
         </div>
         <div class="col-3 column">
           <div class="row placeInfos justify-content-center">
