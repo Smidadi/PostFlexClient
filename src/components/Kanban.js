@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import KanbanColumn from './KanbanColumn'
+import PostitList from './PostitList';
 
 class Kanban extends Component {
 
@@ -12,17 +12,13 @@ class Kanban extends Component {
  
   render() {
     return (
-      <div>
-        <div class="row">
-          
-        </div>
-        <div>
-          <button>
-            +
-          </button>
-        </div>
+      <div class="col-2 column">
+          <div class="row placeInfos justify-content-center">
+              <h5>{this.state.title}</h5>
+          </div>
+          <PostitList ref={this.postitListRef} />
       </div>
-    )
+      )
   }
 }
 

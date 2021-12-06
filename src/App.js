@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import KanbanColumn from './components/KanbanColumn';
+import Kanban from './components/Kanban';
 import ProductBacklog from './components/ProductBacklog';
 import Authentification from './components/Authentification';
 import MainInfosBar from './components/MainInfosBar';

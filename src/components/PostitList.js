@@ -9,7 +9,7 @@ class PostitList extends Component {
         // initial state, subject to change, first elements only here for test
         this.state = {
             postits: [
-                <Postit title="Title_1" description="Description_1" colors={["green"]}/>
+                <Postit title="Title_1" description="Description_1" colors={[]}/>
             ]
         }
     }
