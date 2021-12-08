@@ -16,7 +16,7 @@ class PostitList extends Component {
 
     // add a Postit component to the list and update the count
     addPostit(title, description, colors) {
-        this.setState({postits: [...this.state.postits, <Postit title={title} description={description} colors={colors}/>]});
+        this.setState({postits: [...this.state.postits, <Postit id='1' title={title} description={description} colors={colors}/>]});
     }
     
     render() {

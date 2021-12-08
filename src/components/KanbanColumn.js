@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 
+import PostitList from './PostitList';
+
 class KanbanColumn extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { title: 'Product backlog', max: 100, postits: ''};
+    this.state = { title: '0', 
+                    max: 1000, 
+                  };
+
+    this.postitListRef = React.createRef(); // will be a ref to an instance of a component
+
+    this.addPostit = this.addPostit.bind(this);
   }
 
   setTitle(title) {
@@ -12,19 +20,26 @@ class KanbanColumn extends Component {
   }
 
   setMax(max) {
-    this.setState({max: max});
+      this.setState({max: max});
+  }
+
+  /* call the function addPostit from the instance of PostitList
+  */
+  addPostit() {
+    this.postitListRef.current.addPostit();
   }
 
   render() {
-    return (
-      <div class="col-3 column">
-        <div class="row placeInfos justify-content-center">
-          {this.state.title}
-        </div>
-        <div class="row placeInfos justify-content-center">
-          +
-        </div>
+
+      return (
+      <div class="col-2 column">
+          <div class="row placeInfos justify-content-center">
+              <h5>{this.props.title}</h5>
+          </div>
+          <PostitList ref={this.postitListRef} />
       </div>
+          
+    
     )
   }
 }

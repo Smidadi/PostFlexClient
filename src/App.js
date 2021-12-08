@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import KanbanColumn from './components/KanbanColumn';
+import Kanban from './components/Kanban';
 import ProductBacklog from './components/ProductBacklog';
 import Authentification from './components/Authentification';
 import MainInfosBar from './components/MainInfosBar';
@@ -47,9 +47,10 @@ class App extends Component {
           <ProductBacklog />
         <div class="col-1"></div>
         <div class="col-8">
+            <Kanban />
             <SprintList />        
         </div>
-      </div>
+        </div>
       </div>
     </div>
     )
