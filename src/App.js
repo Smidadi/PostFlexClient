@@ -53,7 +53,7 @@ class App extends Component {
             <Kanban />
           </div>
         </div>
-      </div>
+        </div>
       </div>
     </div>
     )

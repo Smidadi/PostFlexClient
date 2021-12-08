@@ -92,6 +92,7 @@ class ProductBacklog extends Component {
                             options={this.state.colorOptions}
                             styles={this.state.colorStyles}
                             onChange={this.handleMultiChange}
+                            placeholder="Couleur"
                         />
                         <input class="addPostitSubmit" type="submit" value="Ajouter postit" />
                     </form>}   
