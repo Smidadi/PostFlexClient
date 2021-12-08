@@ -15,9 +15,9 @@ class ProductBacklog extends Component {
                         newPostitDescription: '',
                         newPostitColors: [],
                         colorOptions: [ //options for postit types / colors
-                            { label: "Front", value: "green", color: "green" },
-                            { label: "Back", value: "yellow", color: "yellow" },
-                            { label: "BDD", value: "red", color: "red" }
+                            { value: "green", color: "green" },
+                            { value: "yellow", color: "yellow" },
+                            { value: "red", color: "red" }
                           ],
                         colorStyles: { //Colors for multiSelect options
                             option: (styles, { data }) => ({
@@ -62,7 +62,7 @@ class ProductBacklog extends Component {
     }
 
     handleSubmit(event) {
-        this.setState({isAddingPostit: false, newPostitTitle: '', newPostitDescription: '',});
+        this.setState({isAddingPostit: false, newPostitTitle: '', newPostitDescription: '', newPostitColors:[]});
         this.postitListRef.current.addPostit(this.state.newPostitTitle, this.state.newPostitDescription, this.state.newPostitColors);
     }
 
