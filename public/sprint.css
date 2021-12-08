@@ -225,3 +225,19 @@ html, body {
 .replaceTagColor {
     padding-left:3%;
 }
+
+.sizeSprint {
+    width: 20%;
+    margin-right: 5%;
+}
+
+.sizeTitleSprint {
+    margin-top:15%;
+    padding:5%;
+}
+
+.sizeBlockSprint {
+    margin-top:20%;
+    padding-top: 50%;
+    padding-bottom: 50%;
+}

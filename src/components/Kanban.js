@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PostitList from './PostitList';
+import KanbanColumn from './KanbanColumn';
 
 class Kanban extends Component {
 

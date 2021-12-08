@@ -13,19 +13,15 @@ class Sprint extends Component {
 
   render() {
     return (
-      <div>
-        <div class="col-3 column text-center">
+      <div class="col"> 
+        <div class="row column justify-content-center sizeTitleSprint">
           Sprint n°{this.state.num}
         </div>
-        <div class="col-3 column">
-          <div class="row placeInfos justify-content-center">
-            kanban
-          </div>
+        <div class="row column justify-content-center sizeBlockSprint">
+          kanban
         </div>
-        <div class="col-3 column">
-          <div class="row placeInfos justify-content-center">
-            planning
-          </div>
+        <div class="row column justify-content-center sizeBlockSprint">
+          planning
         </div>
       </div>
     )
