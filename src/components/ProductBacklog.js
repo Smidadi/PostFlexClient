@@ -1,6 +1,5 @@
 import React, { Component, } from 'react';
 import Select from "react-select";
-
 import PostitList from './PostitList';
 
 
@@ -69,7 +68,7 @@ class ProductBacklog extends Component {
     render() {
 
         return (
-        <div class="col-2 column">
+        <div class="col-2 column scrollY">
             <div class="row placeInfos justify-content-center">
                 <h5>{this.state.title}</h5>
             </div>

@@ -147,7 +147,7 @@ html, body {
 }
 
 .placeInfos {
-    padding: 50%;
+    padding: 20%;
 }
 
 .addPostitButton {
@@ -240,4 +240,13 @@ html, body {
     margin-top:20%;
     padding-top: 50%;
     padding-bottom: 50%;
+}
+
+.noscroll {
+    overflow: hidden;
+}
+
+.scrollY {
+   overflow: auto;
+   max-height: 700px;
 }

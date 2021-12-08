@@ -18,8 +18,7 @@ class SprintList extends Component {
     event.preventDefault()
     const array = this.state.sprints.slice()
     const num = array.length.toString()
-    const id = Date.now()
-    this.setState({sprints:[...this.state.sprints, <Sprint id={id} num={num} accessKanban={this.test}/>]})
+    this.setState({sprints:[...this.state.sprints, <Sprint num={num} accessKanban={this.test}/>]})
   }
  
   render() {

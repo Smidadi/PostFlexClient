@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PostitList from './PostitList';
 import KanbanColumn from './KanbanColumn';
 
 class Kanban extends Component {
@@ -26,7 +25,7 @@ class Kanban extends Component {
         {this.state.n}
         <div class="row">
           {this.state.columns.map((element, i) => {
-            return <div class="col resizeSprint">{element}</div>
+            return <div class="col">{element}</div>
           })}
         </div>
         <div>

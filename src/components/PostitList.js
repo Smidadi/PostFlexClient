@@ -1,5 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
-
+import React, { Component } from 'react';
 import Postit from './Postit';
 
 class PostitList extends Component {

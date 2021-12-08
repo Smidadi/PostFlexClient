@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import Kanban from './Kanban';
 import SprintList from './SprintList';
 
 class BlockToDisplay extends Component {
@@ -14,7 +12,7 @@ class BlockToDisplay extends Component {
     }
 
     toShow = (blockToShow) => {
-        return !(blockToShow == this.state.block);
+        return blockToShow !== this.state.block;
     }
 
     getKanban = (kanban) => {
