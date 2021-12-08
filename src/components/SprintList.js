@@ -23,7 +23,7 @@ class SprintList extends Component {
       <div>
         <div class="row">
           {this.state.sprints.map((element, i) => {
-            return <div class="col resizeSprint">{element}</div>
+            return <div>{element}</div>
           })}
         </div>
         <div>
