@@ -23,7 +23,7 @@ class PostitList extends Component {
 
         return (
             <div>
-                {this.state.postits.map((component, index) => <li key={index}>{component}</li>)} {/* get all the components from the list */}
+                {this.state.postits.map((component, index) => <div key={index}>{component}</div>)} {/* get all the components from the list */}
             </div>
         )
     }

@@ -43,7 +43,7 @@ class App extends Component {
       </div>
       </header>
       <div class="container-fluid">
-        <div class="row border border-dark">
+        <div class="row">
           <ProductBacklog />
         <div class="col-1"></div>
         <BlockToDisplay />
