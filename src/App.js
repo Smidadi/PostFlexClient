@@ -7,6 +7,7 @@ import Authentification from './components/Authentification';
 import MainInfosBar from './components/MainInfosBar';
 import Sprint from './components/Sprint';
 import SprintList from './components/SprintList';
+import BlockToDisplay from './components/BlockToDisplay';
 
 
 class App extends Component {
@@ -45,14 +46,7 @@ class App extends Component {
         <div class="row border border-dark">
           <ProductBacklog />
         <div class="col-1"></div>
-        <div class="col-8">
-          <div hidden={this.state.sprintHide}>
-            <SprintList />     
-          </div>
-          <div hidden={!this.state.sprintHide}>
-            <Kanban />
-          </div>
-        </div>
+        <BlockToDisplay />
         </div>
       </div>
     </div>

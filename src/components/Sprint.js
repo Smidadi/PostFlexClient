@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Kanban from './Kanban';
+
 class Sprint extends Component {
 
   constructor(props) {
@@ -7,7 +9,8 @@ class Sprint extends Component {
     this.state = {
       id: props.id,
       num: props.num,
-      title: "titre"
+      title: "titre",
+      kanban: <Kanban title={"kanban du sprint n°"+props.num}/>
     };
   }
 
@@ -17,7 +20,7 @@ class Sprint extends Component {
         <div class="col-3 column text-center">
           Sprint n°{this.state.num}
         </div>
-        <div class="col-3 column">
+        <div class="col-3 column" onClick={() => this.props.accessKanban(this.state.kanban)}>
           <div class="row placeInfos justify-content-center">
             kanban
           </div>

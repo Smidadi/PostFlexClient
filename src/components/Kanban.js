@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PostitList from './PostitList';
+import KanbanColumn from './KanbanColumn';
 
 class Kanban extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      n:this.props.title,
       columns: [<KanbanColumn title="0"/>]
     };
     this.postitListRef = React.createRef();
@@ -21,6 +23,7 @@ class Kanban extends Component {
   render() {
     return (
       <div>
+        {this.state.n}
         <div class="row">
           {this.state.columns.map((element, i) => {
             return <div class="col resizeSprint">{element}</div>
