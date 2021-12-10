@@ -1,5 +1,6 @@
 import React, { Component, } from 'react';
 import Select from "react-select";
+import { v4 as uuidv4 } from 'uuid';
 
 import PostitList from './PostitList';
 
@@ -10,6 +11,8 @@ class ProductBacklog extends Component {
         super(props);
         this.state = { title: 'Product Backlog', 
                         max: 1000, 
+                        canPut: false,
+                        postitToPut: null,
                         isAddingPostit: false, 
                         newPostitTitle: '', 
                         newPostitDescription: '',
@@ -41,7 +44,6 @@ class ProductBacklog extends Component {
     setTitle(title) {
         this.setState({title: title});
     }
-
     setMax(max) {
         this.setState({max: max});
     }
@@ -52,50 +54,82 @@ class ProductBacklog extends Component {
         this.setState({isAddingPostit: true});
     }
     
+    //============================
+    // Methods to add a new postit 
     handleChange(event) {   
         const name = event.target.name; 
         this.setState({[name]: event.target.value});  
     }
-
     handleMultiChange(option) {
         this.setState({newPostitColors: option.map(o => o.value)} );
     }
-
     handleSubmit(event) {
-        this.setState({isAddingPostit: false, newPostitTitle: '', newPostitDescription: '',});
-        this.postitListRef.current.addPostit(this.state.newPostitTitle, this.state.newPostitDescription, this.state.newPostitColors);
+        this.setState({isAddingPostit: false, newPostitTitle: '', newPostitDescription: '', newPostitColors: []});
+        this.postitListRef.current.addPostit(uuidv4(), this.state.newPostitTitle, this.state.newPostitDescription, this.state.newPostitColors);
     }
+    //==============================
+
+    // Calling from children when a postit starts moving
+    handleMove = (component) => {
+        this.handleMoveKanban(component); // informs the kanban
+    }
+    handleMoveKanban = (component) => {}
+    
+    // Calling when the button to put the postit currently moving is triggered
+    handlePutPostit = () => {
+        this.postitListRef.current.addPostit(this.state.postitToPut.props.id, this.state.postitToPut.props.title, 
+                this.state.postitToPut.props.description, this.state.postitToPut.props.colors);
+        this.handlePutPostitKanban(); // informs the kanban
+    }
+    handlePutPostitKanban = () => {}
+
+    // The unique kanban call this method when a postit from any kanbanColumn is moving,
+    // allowing to put the postit in this column
+    enableToPutPostit(canPut, newPostit) {
+        this.setState({canPut: canPut, postitToPut: newPostit});
+    }
+
 
     render() {
 
         return (
         <div class="col-2 column">
+            {this.state.canPut === true ? // Is a postit from any column currently moving ?
+            <button onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
+            :
+            null}
+
             <div class="row placeInfos justify-content-center">
                 <h5>{this.state.title}</h5>
             </div>
-            <PostitList ref={this.postitListRef} />
+
+            <PostitList handleMove={this.handleMove} ref={this.postitListRef} />
            
             <div class="row placeInfos justify-content-center">
-                {this.state.isAddingPostit == false ? // are we doing the add of another postit ?
-                    <button onClick={this.addPostit}>Ajouter postit</button> // if not, display a button to create a form
-                    : // else display the form to create the postit
-                    <form onSubmit={this.handleSubmit}> 
-                        <label>
-                            <input autoFocus name="newPostitTitle" type="text" value={this.state.newPostitTitle} 
-                                onChange={this.handleChange} placeholder= "Titre" />  
-                            <input name="newPostitDescription" type="text" value={this.state.newPostitDescription} 
-                                onChange={this.handleChange} placeholder="Description" />  
-                        </label>
-                        <Select
-                            isMulti
-                            name="colors"
-                            options={this.state.colorOptions}
-                            styles={this.state.colorStyles}
-                            onChange={this.handleMultiChange}
-                            placeholder="Couleur"
-                        />
-                        <input type="submit" value="Ajouter postit" />
-                    </form>}   
+                {this.state.canPut === false ? // hide the possibility of adding a new pustit if a postit is already currently moving
+                    this.state.isAddingPostit === false ? // are we doing the add of another postit ?
+                        <button onClick={this.addPostit}>Ajouter postit</button> // if not, display a button to create a form
+                        : // else display the form to create the postit
+                        <form onSubmit={this.handleSubmit}> 
+                            <label>
+                                <input autoFocus name="newPostitTitle" type="text" value={this.state.newPostitTitle} 
+                                    onChange={this.handleChange} placeholder= "Titre" />  
+                                <input name="newPostitDescription" type="text" value={this.state.newPostitDescription} 
+                                    onChange={this.handleChange} placeholder="Description" />  
+                            </label>
+                            <Select
+                                isMulti
+                                name="colors"
+                                options={this.state.colorOptions}
+                                styles={this.state.colorStyles}
+                                onChange={this.handleMultiChange}
+                                placeholder="Couleur"
+                            />
+                            <input type="submit" value="Ajouter postit" />
+                        </form>
+                    :
+                    null
+                } 
             </div>
         </div>
         )

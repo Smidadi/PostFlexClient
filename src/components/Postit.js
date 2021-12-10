@@ -9,6 +9,10 @@ class Postit extends Component {
         this.state = {date: date};
     }
 
+    // Called when the button to move the postit is triggered
+    onClickMove = (event) => {
+        this.props.handleMove(this);
+    }
 
     render() {
         return (
@@ -21,14 +25,15 @@ class Postit extends Component {
                     ) : null}
                     
                     <h6>
-                        {this.props.title != '' ? this.props.title : "Titre"}
+                        {this.props.title !== '' ? this.props.title : "Titre"}
                     </h6>
                     <div>
-                        {this.props.description != '' ? this.props.description : "Description"}
+                        {this.props.description !== '' ? this.props.description : "Description"}
                     </div>
                     <div>
                         {this.state.date}
-                    </div>  
+                    </div> 
+                    <button onClick={this.onClickMove}>Déplacer</button>{/* button to move a postit */}
             </div>
         )
     }

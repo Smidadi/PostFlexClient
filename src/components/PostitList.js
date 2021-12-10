@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component} from 'react';
 
 import Postit from './Postit';
 
@@ -9,14 +9,23 @@ class PostitList extends Component {
         // initial state, subject to change, first elements only here for test
         this.state = {
             postits: [
-                <Postit title="Title_1" description="Description_1" colors={[]}/>
-            ]
+                //<Postit id={uuidv4()} handleMove={this.handleClickMove} title="Title_1" description="Description_1" colors={['green']}/>
+            ],
         }
+
     }
 
     // add a Postit component to the list and update the count
-    addPostit(title, description, colors) {
-        this.setState({postits: [...this.state.postits, <Postit id='1' title={title} description={description} colors={colors}/>]});
+    addPostit(id, title, description, colors) {
+        const postit = <Postit id={id} handleMove={this.handleClickMove} title={title} description={description} colors={colors}/>;
+        this.setState({postits: [...this.state.postits, postit]});
+    }
+
+    // Called by a postit child when it starts moving
+    handleClickMove = (component) => {
+        this.props.handleMove(component); // call the parent corresponding function
+        // then we remove the postit currently moving from the list
+        this.setState({postits: this.state.postits.filter(element => element.props.id !== component.props.id)})
     }
     
     render() {
@@ -24,6 +33,7 @@ class PostitList extends Component {
         return (
             <div>
                 {this.state.postits.map((component, index) => <li key={index}>{component}</li>)} {/* get all the components from the list */}
+                
             </div>
         )
     }

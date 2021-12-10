@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Kanban from './components/Kanban';
 import ProductBacklog from './components/ProductBacklog';
 import Authentification from './components/Authentification';
 import MainInfosBar from './components/MainInfosBar';
-import Sprint from './components/Sprint';
 import SprintList from './components/SprintList';
+import {ProductBacklogContext} from './components/Context';
 
 
 class App extends Component {
@@ -15,8 +15,10 @@ class App extends Component {
     super(props);
     this.state = {
       apiResponse: '',
-      sprintHide: false
+      sprintHide: true
     };
+
+    this.productBacklogRef = React.createRef();
   }
 
   callAPI() {
@@ -32,6 +34,7 @@ class App extends Component {
 
   render() {
     return (
+    <ProductBacklogContext.Provider value={this.productBacklogRef}>
     <div>
       <header>
       <div className="container-fluid">
@@ -43,7 +46,7 @@ class App extends Component {
       </header>
       <div class="container-fluid">
         <div class="row border border-dark">
-          <ProductBacklog />
+          <ProductBacklog ref={this.productBacklogRef}/>
         <div class="col-1"></div>
         <div class="col-8">
           <div hidden={this.state.sprintHide}>
@@ -56,6 +59,7 @@ class App extends Component {
         </div>
       </div>
     </div>
+    </ProductBacklogContext.Provider>
     )
   }
 }
