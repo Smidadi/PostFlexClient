@@ -16,13 +16,14 @@ class Postit extends Component {
 
     render() {
         return (
-            <div class="col-12 column">
-                    {/* List of rectangles of chosen colors */}
-                    {this.props.colors != null ? this.props.colors.map((color, index) => 
-                    <div key={index} style={{ display: "flex",  width: "50x", 
-                        height: "10px", backgroundColor: color}}>
+            <div class="col-12 postitStyle">
+                    <div class="row replaceTagColor">
+                        {/* List of rectangles of chosen colors */}
+                        {this.props.colors != null ? this.props.colors.map((color, index) => 
+                        <div class="tagColor" key={index} style={{backgroundColor: color}}>
+                        </div>
+                        ) : null}
                     </div>
-                    ) : null}
                     
                     <h6>
                         {this.props.title !== '' ? this.props.title : "Titre"}

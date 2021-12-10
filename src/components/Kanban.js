@@ -62,9 +62,10 @@ class Kanban extends Component {
   render() {
     return (
       <div>
+        {this.state.n}
         <div class="row">
           {this.state.columns.map((element, i) => {
-            return <div class="col resizeSprint">{element}</div>
+            return <div class="col">{element}</div>
           })}
         </div>
         <div>

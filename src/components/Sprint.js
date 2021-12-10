@@ -1,31 +1,28 @@
 import React, { Component } from 'react';
+import Kanban from './Kanban';
 
 class Sprint extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      id: props.id,
       num: props.num,
-      title: "titre"
+      title: "titre",
+      kanban: <Kanban title={"kanban du sprint n°"+props.num}/>
     };
   }
 
   render() {
     return (
-      <div>
-        <div class="col-3 column text-center">
+      <div class="col"> 
+        <div class="row column justify-content-center sizeTitleSprint">
           Sprint n°{this.state.num}
         </div>
-        <div class="col-3 column">
-          <div class="row placeInfos justify-content-center">
-            kanban
-          </div>
+        <div class="row column justify-content-center sizeBlockSprint" onClick={() => this.props.accessKanban(this.state.kanban)}>
+          kanban
         </div>
-        <div class="col-3 column">
-          <div class="row placeInfos justify-content-center">
-            planning
-          </div>
+        <div class="row column justify-content-center sizeBlockSprint">
+          planning
         </div>
       </div>
     )

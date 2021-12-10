@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import Sprint from './Sprint';
 
 class SprintList extends Component {
-
+  
   constructor(props) {
     super(props);
     this.state = {
-      sprints: [<Sprint id={Date.now()} num={0}/>]
+      sprints: []
     };
   }
- 
+  
+    test = (kanban) => {
+      this.props.accessKanban2(kanban)
+    }
+  
   handleAddSprint = (event) => {
     event.preventDefault()
     const array = this.state.sprints.slice()
     const num = array.length.toString()
-    const id = console.log(Date.now())
-    this.setState({sprints:[...this.state.sprints, <Sprint id={id} num={num}/>]})
+    this.setState({sprints:[...this.state.sprints, <Sprint num={num} accessKanban={this.test}/>]})
   }
  
   render() {
@@ -23,7 +26,7 @@ class SprintList extends Component {
       <div>
         <div class="row">
           {this.state.sprints.map((element, i) => {
-            return <div class="col resizeSprint">{element}</div>
+            return <div class="sizeSprint">{element}</div>
           })}
         </div>
         <div>

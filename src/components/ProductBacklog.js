@@ -18,9 +18,9 @@ class ProductBacklog extends Component {
                         newPostitDescription: '',
                         newPostitColors: [],
                         colorOptions: [ //options for postit types / colors
-                            { label: "Front", value: "green", color: "green" },
-                            { label: "Back", value: "yellow", color: "yellow" },
-                            { label: "BDD", value: "red", color: "red" }
+                            { value: "green", color: "green" },
+                            { value: "yellow", color: "yellow" },
+                            { value: "red", color: "red" }
                           ],
                         colorStyles: { //Colors for multiSelect options
                             option: (styles, { data }) => ({
@@ -93,7 +93,7 @@ class ProductBacklog extends Component {
     render() {
 
         return (
-        <div class="col-2 column">
+        <div class="col-2 column scrollY">
             {this.state.canPut === true ? // Is a postit from any column currently moving ?
             <button onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
             :
@@ -105,16 +105,16 @@ class ProductBacklog extends Component {
 
             <PostitList handleMove={this.handleMove} ref={this.postitListRef} />
            
-            <div class="row placeInfos justify-content-center">
-                {this.state.canPut === false ? // hide the possibility of adding a new pustit if a postit is already currently moving
-                    this.state.isAddingPostit === false ? // are we doing the add of another postit ?
-                        <button onClick={this.addPostit}>Ajouter postit</button> // if not, display a button to create a form
+            <div class="row justify-content-center">
+                {this.state.canPut === false ? 
+                    this.state.isAddingPostit == false ? // are we doing the add of another postit ?
+                        <button class="addPostitButton" onClick={this.addPostit}>Ajouter postit</button> // if not, display a button to create a form
                         : // else display the form to create the postit
-                        <form onSubmit={this.handleSubmit}> 
+                        <form class="formAddPostit" onSubmit={this.handleSubmit}> 
                             <label>
-                                <input autoFocus name="newPostitTitle" type="text" value={this.state.newPostitTitle} 
+                                <input class="formLabelsize" autoFocus name="newPostitTitle" type="text" value={this.state.newPostitTitle} 
                                     onChange={this.handleChange} placeholder= "Titre" />  
-                                <input name="newPostitDescription" type="text" value={this.state.newPostitDescription} 
+                                <input class="formLabelsize" name="newPostitDescription" type="text" value={this.state.newPostitDescription} 
                                     onChange={this.handleChange} placeholder="Description" />  
                             </label>
                             <Select
@@ -125,11 +125,11 @@ class ProductBacklog extends Component {
                                 onChange={this.handleMultiChange}
                                 placeholder="Couleur"
                             />
-                            <input type="submit" value="Ajouter postit" />
+                            <input class="addPostitSubmit" type="submit" value="Ajouter postit" />
                         </form>
                     :
                     null
-                } 
+                }   
             </div>
         </div>
         )

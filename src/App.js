@@ -6,8 +6,9 @@ import ProductBacklog from './components/ProductBacklog';
 import Authentification from './components/Authentification';
 import MainInfosBar from './components/MainInfosBar';
 import SprintList from './components/SprintList';
-import {ProductBacklogContext} from './components/Context';
+import BlockToDisplay from './components/BlockToDisplay';
 
+import {ProductBacklogContext} from './components/Context';
 
 class App extends Component {
 
@@ -45,17 +46,10 @@ class App extends Component {
       </div>
       </header>
       <div class="container-fluid">
-        <div class="row border border-dark">
+        <div class="row">
           <ProductBacklog ref={this.productBacklogRef}/>
         <div class="col-1"></div>
-        <div class="col-8">
-          <div hidden={this.state.sprintHide}>
-            <SprintList />     
-          </div>
-          <div hidden={!this.state.sprintHide}>
-            <Kanban />
-          </div>
-        </div>
+        <BlockToDisplay />
         </div>
       </div>
     </div>
