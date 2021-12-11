@@ -17,13 +17,13 @@ class Kanban extends Component {
     };
   }
   
-  componentDidMount() {
+  componentDidMount = () => {
     // set the ref to the productBacklog
     this.setState({productBacklogRef: this.context});
   }
   
   // Ideally this method should not be used for that
-  componentDidUpdate() {
+  componentDidUpdate = () => {
     if(this.state.hasCreatedBacklogFunction === false) {
       // here we add two new functions to the productBacklog in order to call the corresponding methods from the kanban
       // really ugly I know
@@ -36,6 +36,7 @@ class Kanban extends Component {
   // If a postit has started to move
   handleMove = (component) => {
     // we inform every column that they can now display a button to put the postit
+    console.log(component);
     this.setState({isMovingPostit: true,
       columns: this.state.columns.map((element) => React.cloneElement(element, {canPut: true, newPostit:<Postit {...component.props}/>}))});
     // we inform the productBacklog too

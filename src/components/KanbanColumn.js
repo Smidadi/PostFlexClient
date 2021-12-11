@@ -27,7 +27,7 @@ class KanbanColumn extends Component {
   // Calling when the button to put the postit currently moving is triggered
   handlePutPostit = () => {
     this.postitListRef.current.addPostit(this.props.newPostit.props.id, this.props.newPostit.props.title, 
-      this.props.newPostit.props.description, this.props.newPostit.props.colors);
+              this.props.newPostit.props.description, this.props.newPostit.props.colors);
     this.props.handlePostitPutted(); // informs the kanban
   }
 

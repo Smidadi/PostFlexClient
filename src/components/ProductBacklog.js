@@ -34,36 +34,30 @@ class ProductBacklog extends Component {
                         }};
 
         this.postitListRef = React.createRef(); // will be a ref to an instance of a component
-
-        this.addPostit = this.addPostit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleMultiChange = this.handleMultiChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    setTitle(title) {
+    setTitle = (title) => {
         this.setState({title: title});
     }
-    setMax(max) {
+    setMax = (max) => {
         this.setState({max: max});
     }
 
-    /* call the function addPostit from the instance of PostitList
-    */
-    addPostit() {
-        this.setState({isAddingPostit: true});
-    }
+    
     
     //============================
     // Methods to add a new postit 
-    handleChange(event) {   
+    addPostit = () => {
+        this.setState({isAddingPostit: true});
+    }
+    handleChange = (event) => {   
         const name = event.target.name; 
         this.setState({[name]: event.target.value});  
     }
-    handleMultiChange(option) {
+    handleMultiChange = (option) => {
         this.setState({newPostitColors: option.map(o => o.value)} );
     }
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         this.setState({isAddingPostit: false, newPostitTitle: '', newPostitDescription: '', newPostitColors: []});
         this.postitListRef.current.addPostit(uuidv4(), this.state.newPostitTitle, this.state.newPostitDescription, this.state.newPostitColors);
     }
@@ -85,7 +79,7 @@ class ProductBacklog extends Component {
 
     // The unique kanban call this method when a postit from any kanbanColumn is moving,
     // allowing to put the postit in this column
-    enableToPutPostit(canPut, newPostit) {
+    enableToPutPostit = (canPut, newPostit) => {
         this.setState({canPut: canPut, postitToPut: newPostit});
     }
 
@@ -107,7 +101,7 @@ class ProductBacklog extends Component {
            
             <div class="row justify-content-center">
                 {this.state.canPut === false ? 
-                    this.state.isAddingPostit == false ? // are we doing the add of another postit ?
+                    this.state.isAddingPostit === false ? // are we doing the add of another postit ?
                         <button class="addPostitButton" onClick={this.addPostit}>Ajouter postit</button> // if not, display a button to create a form
                         : // else display the form to create the postit
                         <form class="formAddPostit" onSubmit={this.handleSubmit}> 
