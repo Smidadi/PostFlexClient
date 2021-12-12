@@ -99,7 +99,7 @@ class ProductBacklog extends Component {
 
             <PostitList handleMove={this.handleMove} ref={this.postitListRef} />
            
-            <div class="row justify-content-center">
+            <div class="row">
                 {this.state.canPut === false ? 
                     this.state.isAddingPostit === false ? // are we doing the add of another postit ?
                         <button class="addPostitButton" onClick={this.addPostit}>Ajouter postit</button> // if not, display a button to create a form

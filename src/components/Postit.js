@@ -77,17 +77,23 @@ class Postit extends Component {
                                 {this.props.date}
                             </div> 
 
-                            <button onClick={this.onClickMove}>Déplacer</button>{/* button to move a postit */}
-                            
-                            <button onClick={this.modifyPostit}>Modifier</button> {/* button to modify the postit */}
+                            <div class="row">  
+                                <div class="col-6">   
+                                    <button class="settingsPostit" onClick={this.onClickMove}>Déplacer</button>{/* button to move a postit */}
+                               </div> 
+                                <div class="col-6">   
+                                    <button class="settingsPostit" onClick={this.modifyPostit}>Modifier</button> {/* button to modify the postit */}
+                               </div> 
+                            </div>
                         </div>
 
-                            : // else display the form to modify the postit
-                            <form onSubmit={this.handleSubmit}> 
+                        : // else display the form to modify the postit
+                        <div class="row">
+                            <form class="formSettingsPostit" onSubmit={this.handleSubmit}> 
                                 <label>
-                                    <input class="formLabelsize" autoFocus name="newTitle" type="text" value={this.state.newTitle} 
+                                    <input class="formLabelSettingsSize" autoFocus name="newTitle" type="text" value={this.state.newTitle} 
                                         onChange={this.handleChange} placeholder= "Titre" />  
-                                    <input class="formLabelsize" name="newDescription" type="text" value={this.state.newDescription} 
+                                    <input class="formLabelSettingsSize" name="newDescription" type="text" value={this.state.newDescription} 
                                         onChange={this.handleChange} placeholder="Description" />  
                                 </label>
                                 <Select
@@ -99,9 +105,16 @@ class Postit extends Component {
                                     onChange={this.handleMultiChange}
                                     placeholder="Couleur"
                                 />
-                                <input type="submit" value="Valider" />
-                                <button onClick={this.modifyCancel}>Annuler</button>
+                                <div class="row"> 
+                                    <div class="col-6">
+                                        <input id="modifyPostitStyle" type="submit" value="Valider" />
+                                    </div>
+                                    <div class="col-6">
+                                        <button id="modifyPostitStyle" onClick={this.modifyCancel}>Annuler</button>
+                                    </div>
+                                </div>
                             </form>
+                        </div>
                     }
             </div>
         )
