@@ -79,7 +79,7 @@ class Authentification extends Component {
         <div class="col-3 loginColor loginCharacterFont">
             <div class="row idFont" hidden={this.state.connected}>
                 <div class="col-4">
-                    <div class="row">Identifiant</div> 
+                    <div class="row textColor">Identifiant</div> 
                 </div>
                 <div class="col-8">
                     <input value={this.state.idInput} onChange={this.handleIdChange} type="text" placeholder="Identifiant" id="inputLogin"/>
@@ -87,7 +87,7 @@ class Authentification extends Component {
             </div>
             <div class="row mdpFont" hidden={this.state.connected}>
                 <div class="col-4">
-                    <div class="row">Mot de passe</div>
+                    <div class="row textColor">Mot de passe</div>
                 </div>
                 <div class="col-8">
                     <input value={this.state.passwordInput} onChange={this.handlePasswordChange} type="password" placeholder="Mot de passe" id="inputMdp"/>

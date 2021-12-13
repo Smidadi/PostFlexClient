@@ -45,7 +45,7 @@ class App extends Component {
           </div>
       </div>
       </header>
-      <div class="container-fluid">
+      <div class="container-fluid ">
         <div class="row">
           <ProductBacklog ref={this.productBacklogRef}/>
         <div class="col-1"></div>

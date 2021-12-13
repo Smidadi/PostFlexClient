@@ -49,18 +49,18 @@ class KanbanColumn extends Component {
   render() {
 
       return (
-      <div class="col column columnKanbanStyle">
+      <div class="col-12 column">
           {this.props.canPut === true ? // Is a postit from any column currently moving ?
-          <button onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
+          <button class="settingsPostit" onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
           :
           null}
-          <div class="row" id="title" hidden={this.state.titleModifying}>
+          <div class="row resizeTitlePostit" id="title" hidden={this.state.titleModifying}>
               {this.state.title}
-              <button class="modifyMainBarInfos" onClick={this.handleTitleModify}><img src="../../pen.png" width="30px" /></button>
+              <button class="modifyMainBarInfos" onClick={this.handleTitleModify}><img src="../../pen.png" width="15px" /></button>
           </div>
               <form hidden={!this.state.titleModifying} onSubmit={this.handleTitleSubmit}>
                 <input value={this.state.titleInput} onChange={this.handleTitleChange} type="text" placeholder={this.state.title} id="textMainBarInfos"></input>
-                <button class="confirmMainBarInfos modifyMainBarInfos"><img src="../../check.png" width="30px" /></button>
+                <button class="resizeTitlePostit confirmMainBarInfos modifyMainBarInfos"><img src="../../check.png" width="30px" /></button>
               </form>
           <PostitList ref={this.postitListRef} handleMove={this.handleMove}/>
           

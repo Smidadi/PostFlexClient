@@ -30,7 +30,7 @@ class BlockToDisplay extends Component {
                     <SprintList accessKanban2={this.getKanban} />
                 </div>
                     <div hidden={!this.state.hideSprints}>
-                    <button class="backButton" onClick={this.backToSprintList}>
+                    <button class="backSprintButton" onClick={this.backToSprintList}>
                         <img src="../../back.png" width="30px" height="30px" />
                     </button>
                     {this.state.kanban}

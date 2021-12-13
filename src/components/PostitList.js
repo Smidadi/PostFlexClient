@@ -11,7 +11,7 @@ class PostitList extends Component {
         this.state = {
             postits: [
                 <Postit id={uuidv4()} onPostitModified={this.onPostitModified} handleMove={this.handleClickMove} 
-                    title="Title_1" description="Description_1" colors={['green']}/>,
+                    title="Titre" description="Description" colors={[]}/>,
             ],
         }
 

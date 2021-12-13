@@ -89,7 +89,7 @@ class ProductBacklog extends Component {
         return (
         <div class="col-2 column scrollY">
             {this.state.canPut === true ? // Is a postit from any column currently moving ?
-            <button onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
+            <button class="settingsPostit" onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
             :
             null}
 

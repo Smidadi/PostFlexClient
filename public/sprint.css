@@ -1,15 +1,15 @@
-html, body {
-    height: 100%;
-}
-
 /* Barre principale : titre, date, authentification */
 
 .headSprint {
-    background : rgb(179, 124, 133);
+    background : rgb(84, 70, 87);
 }
 
 .loginColor {
-    background: rgb(92, 58, 97);
+    background: rgb(129, 114, 131);
+}
+
+.textColor {
+    color:white;
 }
 
 .infoSprint {
@@ -61,6 +61,7 @@ html, body {
     font-weight: lighter;
     font-size: 2rem;
     padding-left:5%;
+    padding-top:5%;
 }
 
 .icon {
@@ -83,7 +84,7 @@ html, body {
 }
 
 .allButton:hover {
-    background-color: rgb(90, 40, 82);
+    background-color: rgb(84, 70, 87);
 }
 
 .connexionButton {
@@ -126,6 +127,11 @@ html, body {
     padding-left:2%;
 }
 
+.inverseColor {
+    filter: invert(100%); 
+    -webkit-filter:invert(100%); 
+}
+
 #textMainBarInfos {
     border-radius: 5px;
     font-style: italic;
@@ -142,8 +148,9 @@ html, body {
 .column {
     margin-top: 2%;
     margin-bottom: 2%;
-    border: 0.1rem solid black;
+    border: 0.2rem solid rgb(84, 70, 87);
     border-radius: 10px;
+    padding-bottom: 5%;
 }
 
 .placeInfos {
@@ -201,6 +208,8 @@ html, body {
 
     font-family: "Open Sans";
     font-weight: lighter;
+
+    background: white;
 }
 
 .formAddPostit {
@@ -264,7 +273,7 @@ html, body {
 .settingsPostit { 
     margin-top: 15%;
     margin-bottom: 15%;
-    background-color: rgb(56, 103, 141);
+    background-color: rgb(119, 99, 116);
     border: 0;
     border-radius: 10px;
     width:100%;
@@ -305,6 +314,8 @@ html, body {
     background-color: rgb(98, 105, 173);
 }
 
+/* Sprint part */
+
 .addColumn {
     margin-top:3%;
     margin-left: 1%;
@@ -322,19 +333,20 @@ html, body {
     color:white;
 }
 
-.columnKanbanStyle {
-    padding-bottom: 5%;
-}
-
 .resizeColumnKanban {
     margin-left:2%;
     margin-bottom: 2%;
 }
 
-.backButton {
+.backSprintButton {
     background: transparent;
     border: none !important;
     width: 5%;
     margin-top:2%;
     margin-bottom: 2%;
+}
+
+.resizeTitlePostit {
+    padding:10%;
+    font-size: large;
 }
