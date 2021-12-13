@@ -5,18 +5,33 @@ class KanbanColumn extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { title: '0', 
-                    max: 1000, 
+      this.state = {  title: 'Titre',
+                      titleModifying: false,
+                      titleInput: '', 
+                      max: 1000, 
                   };
 
     this.postitListRef = React.createRef(); // will be a ref to an instance of a component
   }
 
-  setTitle(title) {
-      this.setState({title: title});
+  handleTitleModify = () => {
+    this.setState({titleModifying: true})
   }
-  setMax(max) {
-      this.setState({max: max});
+
+  handleTitleSubmit = (event) => {
+    event.preventDefault()
+    const title = this.state.titleInput
+    if(title === '')
+      alert("Le titre ne peut pas être vide.")
+    else if(title.length > 20)
+      alert("Le titre ne peut pas faire plus de 20 caractères.")
+    else
+      this.setState({title: title, titleModifying: false, titleInput: ''})
+  }
+
+  handleTitleChange = (event) => {
+    const value = event.currentTarget.value
+    this.setState({titleInput: value})
   }
 
   // Calling from children when a postit starts moving
@@ -39,9 +54,14 @@ class KanbanColumn extends Component {
           <button onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
           :
           null}
-          <div class="row placeInfos justify-content-center">
-              <h5>{this.props.title}</h5>
+          <div class="row" id="title" hidden={this.state.titleModifying}>
+              {this.state.title}
+              <button class="modifyMainBarInfos" onClick={this.handleTitleModify}><img src="../../pen.png" width="30px" /></button>
           </div>
+              <form hidden={!this.state.titleModifying} onSubmit={this.handleTitleSubmit}>
+                <input value={this.state.titleInput} onChange={this.handleTitleChange} type="text" placeholder={this.state.title} id="textMainBarInfos"></input>
+                <button class="confirmMainBarInfos modifyMainBarInfos"><img src="../../check.png" width="30px" /></button>
+              </form>
           <PostitList ref={this.postitListRef} handleMove={this.handleMove}/>
           
       </div>
