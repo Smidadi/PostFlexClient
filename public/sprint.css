@@ -246,9 +246,9 @@ html, body {
     padding-bottom: 50%;
 }
 
-.noscroll {
+/* .noscroll {
     overflow: hidden;
-}
+} */
 
 .scrollY {
    overflow: auto;

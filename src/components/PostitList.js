@@ -16,7 +16,7 @@ class PostitList extends Component {
         }
 
     }
-
+    
     // add a Postit component to the list and update the count
     addPostit = (id, title, description, colors) => {
         const postit = <Postit id={id} onPostitModified={this.onPostitModified} 

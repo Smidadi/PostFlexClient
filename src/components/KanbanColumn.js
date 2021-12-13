@@ -7,8 +7,9 @@ class KanbanColumn extends Component {
     super(props);
       this.state = {  title: 'Titre',
                       titleModifying: false,
-                      titleInput: '', 
-                      max: 1000, 
+                      titleInput: 'Titre',
+                      max: '5',
+                      maxInput: '5'
                   };
 
     this.postitListRef = React.createRef(); // will be a ref to an instance of a component
@@ -21,12 +22,26 @@ class KanbanColumn extends Component {
   handleTitleSubmit = (event) => {
     event.preventDefault()
     const title = this.state.titleInput
+    let modified = false
     if(title === '')
       alert("Le titre ne peut pas être vide.")
     else if(title.length > 20)
       alert("Le titre ne peut pas faire plus de 20 caractères.")
     else
-      this.setState({title: title, titleModifying: false, titleInput: ''})
+      modified = true
+
+    const max = this.state.maxInput
+    if(max === '')
+      alert("Il faut rentrer un max")
+    else if(!parseInt(max))
+      alert("Le max doit être un nombre")
+    else if(modified)
+      this.setState({title: title, titleModifying: false, titleInput: title, max: max, maxInput: max})
+  }
+
+  handleMaxChange = (event) => {
+    const value = event.currentTarget.value
+    this.setState({maxInput: value})
   }
 
   handleTitleChange = (event) => {
@@ -41,9 +56,14 @@ class KanbanColumn extends Component {
 
   // Calling when the button to put the postit currently moving is triggered
   handlePutPostit = () => {
-    this.postitListRef.current.addPostit(this.props.newPostit.props.id, this.props.newPostit.props.title, 
-              this.props.newPostit.props.description, this.props.newPostit.props.colors);
-    this.props.handlePostitPutted(); // informs the kanban
+    const num_postits = this.postitListRef.current.state.postits.length
+    if(num_postits >= parseInt(this.state.max))
+      alert("Il y a déjà le nombre max de postits dans cette colonne")
+    else {
+      this.postitListRef.current.addPostit(this.props.newPostit.props.id, this.props.newPostit.props.title, 
+                this.props.newPostit.props.description, this.props.newPostit.props.colors);
+      this.props.handlePostitPutted(); // informs the kanban
+    }
   }
 
   render() {
@@ -60,6 +80,7 @@ class KanbanColumn extends Component {
           </div>
               <form hidden={!this.state.titleModifying} onSubmit={this.handleTitleSubmit}>
                 <input value={this.state.titleInput} onChange={this.handleTitleChange} type="text" placeholder={this.state.title} id="textMainBarInfos"></input>
+                <input value={this.state.maxInput} onChange={this.handleMaxChange} type="text" placeholder={this.state.max} id="textMainBarInfos"></input>
                 <button class="confirmMainBarInfos modifyMainBarInfos"><img src="../../check.png" width="30px" /></button>
               </form>
           <PostitList ref={this.postitListRef} handleMove={this.handleMove}/>
