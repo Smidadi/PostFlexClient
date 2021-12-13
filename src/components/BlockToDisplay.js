@@ -25,13 +25,13 @@ class BlockToDisplay extends Component {
 
     render() {
         return (
-            <div class="col-8">
+            <div class="col-9">
                 <div hidden={this.state.hideSprints}>
                     <SprintList accessKanban2={this.getKanban} />
                 </div>
-                <div hidden={!this.state.hideSprints}>
-                    <button onClick={this.backToSprintList}>
-                        RETOUR
+                    <div hidden={!this.state.hideSprints}>
+                    <button class="backButton" onClick={this.backToSprintList}>
+                        <img src="../../back.png" width="30px" height="30px" />
                     </button>
                     {this.state.kanban}
                 </div>

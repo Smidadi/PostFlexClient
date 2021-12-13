@@ -66,12 +66,12 @@ class Kanban extends Component {
         {this.state.n}
         <div class="row">
           {this.state.columns.map((element, i) => {
-            return <div class="col">{element}</div>
+            return <div class="resizeColumnKanban">{element}</div>
           })}
         </div>
         <div>
           {this.state.isMovingPostit === false ? // if a postit is currently moving, hide the button
-          <button onClick={this.handleClick}>+</button> // button to add a new column
+          <button class="addColumn" onClick={this.handleClick}>+</button> // button to add a new column
           :
           null
           }

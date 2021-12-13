@@ -34,7 +34,7 @@ class KanbanColumn extends Component {
   render() {
 
       return (
-      <div class="col-2 column">
+      <div class="col column columnKanbanStyle">
           {this.props.canPut === true ? // Is a postit from any column currently moving ?
           <button onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
           :

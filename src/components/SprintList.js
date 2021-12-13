@@ -29,9 +29,9 @@ class SprintList extends Component {
             return <div class="sizeSprint">{element}</div>
           })}
         </div>
-        <div>
-          <button onClick={this.handleAddSprint}>
-            +
+        <div class="row">
+          <button class="addColumn" onClick={this.handleAddSprint}>
+            Ajouter un sprint
           </button>
         </div>
       </div>
