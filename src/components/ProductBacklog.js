@@ -36,18 +36,55 @@ class ProductBacklog extends Component {
         this.postitListRef = React.createRef(); // will be a ref to an instance of a component
     }
 
-    setTitle = (title) => {
-        this.setState({title: title});
-    }
-    setMax = (max) => {
-        this.setState({max: max});
+    componentDidMount = () => {
+        console.log("GET");
+        const requestOptions = {
+            method: 'GET', 
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors'
+        };
+        fetch("http://localhost:3001/post_it/all", requestOptions)
+            .then(res => res.json())
+            .then(res => this.updatePostitList(res))
+            .catch(err => err)
     }
 
-    
+    updatePostitList = (postitListJson) => {
+        console.log("POSTIT LIST : ")
+        postitListJson.forEach(element => {
+            console.log(element);
+            if(element.id_colonne == 0){
+                var colors = element.couleur.split(',');
+                colors = colors.filter(element => element !== "");
+                this.postitListRef.current.addPostit(element.id, element.date_creation, element.titre, element.description, colors);
+            }
+        });
+        console.log("END POSTIT LIST")
+    }
+
+    // add postit to db
+    addPostit = (id, date, title, description, colors) => {
+
+        var couleursStr = ",";
+        colors.forEach(element => {
+            couleursStr += element + ","
+        });
+
+        const requestOptions = {
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors'
+        };
+        fetch("http://localhost:3001/post_it/new/" + id + "/" + 0 + "/" + date + "/" + title + "/" + 111 + "/" + description + "/" + couleursStr, requestOptions)
+            .then(response => response.json())
+            .then(data => console.log("RESPONSE" + data))
+            .catch(err => err);
+        this.postitListRef.current.addPostit(id, date, title, description, colors);
+    }
     
     //============================
     // Methods to add a new postit 
-    addPostit = () => {
+    setAddingPostit = () => {
         this.setState({isAddingPostit: true});
     }
     handleChange = (event) => {   
@@ -59,7 +96,7 @@ class ProductBacklog extends Component {
     }
     handleSubmit = (event) => {
         var today = new Date(), date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-        this.postitListRef.current.addPostit(uuidv4(), date, this.state.newPostitTitle === '' ? "Titre" : this.state.newPostitTitle, 
+        this.addPostit(uuidv4(), date, this.state.newPostitTitle === '' ? "Titre" : this.state.newPostitTitle, 
                                 this.state.newPostitDescription === '' ? "Description" : this.state.newPostitDescription, this.state.newPostitColors);
         this.setState({isAddingPostit: false, newPostitTitle: '', newPostitDescription: '', newPostitColors: []});
     }
@@ -104,7 +141,7 @@ class ProductBacklog extends Component {
             <div class="row">
                 {this.state.canPut === false ? 
                     this.state.isAddingPostit === false ? // are we doing the add of another postit ?
-                        <button class="addPostitButton" onClick={this.addPostit}>Ajouter postit</button> // if not, display a button to create a form
+                        <button class="addPostitButton" onClick={this.setAddingPostit}>Ajouter postit</button> // if not, display a button to create a form
                         : // else display the form to create the postit
                         <form class="formAddPostit" onSubmit={this.handleSubmit}> 
                             <label>

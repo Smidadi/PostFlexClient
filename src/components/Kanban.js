@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import KanbanColumn from './KanbanColumn';
 import Postit from './Postit';
 import {ProductBacklogContext} from './Context';
@@ -13,13 +14,33 @@ class Kanban extends Component {
       productBacklogRef: null,
       hasCreatedBacklogFunction: false,
       isMovingPostit: false,
-      columns: [<KanbanColumn handlePostitPutted={this.handlePostitPutted} canPut={false} handleMove={this.handleMove} title="0"/>]
+      columns: []//[<KanbanColumn id={uuidv4()} handlePostitPutted={this.handlePostitPutted} canPut={false} handleMove={this.handleMove} title="0"/>]
     };
   }
   
   componentDidMount = () => {
     // set the ref to the productBacklog
     this.setState({productBacklogRef: this.context});
+    
+    const requestOptions = {
+      method: 'GET', 
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    };
+    fetch("http://localhost:3001/colonne/all/" + 1, requestOptions)
+        .then(res => res.json())
+        .then(res => this.updateColumnList(res))
+        .catch(err => err)
+  }
+
+  updateColumnList = (postitListJson) => {
+    console.log("COLUMN LIST : ")
+    postitListJson.forEach(element => {
+      console.log(element);
+      this.setState({columns:[...this.state.columns, <KanbanColumn id={element.id} handlePostitPutted={this.handlePostitPutted} 
+        canPut={false} handleMove={this.handleMove} title={element.title}/>]})
+    });
+    console.log("END COLUMN LIST")
   }
   
   // Ideally this method should not be used for that
@@ -31,6 +52,22 @@ class Kanban extends Component {
       this.state.productBacklogRef.current.handlePutPostitKanban = () => {this.handlePostitPutted()};
       this.setState({hasCreatedBacklogFunction: true});
     }
+  }
+
+  addColumn = () => {
+    const array = this.state.columns.slice()
+    const title = array.length.toString()
+    const id = uuidv4();
+    
+    const requestOptions = {
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    };
+    fetch("http://localhost:3001/colonne/new/" + 1 + "/" + id + "/" + title, requestOptions)
+
+    this.setState({columns:[...this.state.columns, <KanbanColumn id={id} handlePostitPutted={this.handlePostitPutted} 
+      canPut={false} handleMove={this.handleMove} title={title}/>]})
   }
   
   // If a postit has started to move
@@ -54,9 +91,7 @@ class Kanban extends Component {
     // Called when the button to add a new column is triggered
     handleClick = (event) => {
       event.preventDefault()
-      const array = this.state.columns.slice()
-      const id = array.length.toString()
-      this.setState({columns:[...this.state.columns, <KanbanColumn handlePostitPutted={this.handlePostitPutted} canPut={false} handleMove={this.handleMove} title={id}/>]})
+      this.addColumn();
     }  
  
   render() {

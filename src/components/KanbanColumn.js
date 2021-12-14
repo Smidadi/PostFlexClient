@@ -16,29 +16,42 @@ class KanbanColumn extends Component {
   }
 
   componentDidMount = () => {
-    console.log("GET");
-    fetch("http://localhost:3000/post_it/all")
-        .then(res => res.json)
+    const requestOptions = {
+      method: 'GET', 
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    };
+    fetch("http://localhost:3001/post_it/all", requestOptions)
+        .then(res => res.json())
         .then(res => this.updatePostitList(res))
         .catch(err => err)
   }
 
   updatePostitList = (postitListJson) => {
-    console.log("POSTIT LIST : " + postitListJson)
+    console.log("POSTIT LIST : ")
+    postitListJson.forEach(element => {
+      console.log(element);
+      if(element.id_colonne == this.props.id){
+          var colors = element.couleur.split(',');
+          colors = colors.filter(element => element !== "");
+          this.postitListRef.current.addPostit(element.id, element.date_creation, element.titre, element.description, colors);
+      }
+    });
+    console.log("END POSTIT LIST")
   }
 
   addPostit = (id, date, title, description, colors) => {
-
-    var couleursStr = "";
+    var couleursStr = ",";
     colors.forEach(element => {
       couleursStr += element + ","
     });
 
     const requestOptions = {
-      method: 'POST', 
+      method: 'PUT', 
       headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
     };
-    fetch("http://localhost:3000/post_it/new/" + id + "/" + date + "/1/" + title + "/" + description + "/" + "green", requestOptions)
+    fetch("http://localhost:3001/post_it/change/" + id + "/id_colonne/" + this.props.id, requestOptions)
       .then(response => response.json())
       .then(data => console.log("RESPONSE" + data))
       .catch(err => err);

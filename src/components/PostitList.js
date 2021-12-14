@@ -32,6 +32,18 @@ class PostitList extends Component {
     }
 
     onPostitModified = (component, title, date, description, colors) => {
+        const requestOptions = {
+            method: 'PUT', 
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors'
+        };
+        fetch("http://localhost:3001/post_it/change/" + component.props.id + "/titre/" + title, requestOptions);
+        fetch("http://localhost:3001/post_it/change/" + component.props.id + "/description/" + description, requestOptions);
+        var couleursStr = ",";
+        colors.forEach(element => {
+            couleursStr += element + ","
+        });
+        fetch("http://localhost:3001/post_it/change/" + component.props.id + "/couleur/" + couleursStr, requestOptions);
         this.setState({postits: this.state.postits.map(element => element.props.id === component.props.id ? 
             React.cloneElement(element, {title: title, date: date, description: description, colors: colors}) : element)});
     }
