@@ -203,7 +203,7 @@
 
 .postitStyle {
     border-radius: 3%;
-    border: 0.1rem solid black;
+    border: 0.1rem solid rgb(119, 99, 116);
 
     margin-top: 5%;
     padding: 2%;
@@ -346,6 +346,8 @@
 .resizeColumnKanban {
     margin-left:2%;
     margin-bottom: 2%;
+    width: 80%;
+    padding-bottom: 100%;
 }
 
 .backSprintButton {
@@ -357,6 +359,11 @@
 }
 
 .resizeTitlePostit {
-    padding:10%;
     font-size: large;
+    margin-left:20%;
+    padding:5%;
+}
+
+.test {
+    background:blue;
 }
