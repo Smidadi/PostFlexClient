@@ -19,9 +19,32 @@ class SprintList extends Component {
     const array = this.state.sprints.slice()
     const num = array.length.toString()
     this.setState({sprints:[...this.state.sprints, <Sprint num={num} accessKanban={this.test}/>]})
+    this.addNewSprintInBdd(num);  
+  }
+
+  addNewSprintInBdd = (num) => {
+    const headers = new Headers();
+    const restQry = {
+      method : 'POST',
+      headers : headers,
+      mode : 'cors'
+    };
+    const date = new Date();
+    fetch('http://localhost:3001/sprint/new/'+num+'/'+date.getDay()+'-'+date.getMonth()+'-'+date.getFullYear(),restQry);
+  }
+
+  addAllCreatedSprint = async () => {
+    await fetch('http://localhost:3001/sprint/all/')
+    .then(response => {
+      console.log(response);
+    })
+    .catch(() => {
+      console.log("error");
+    })
   }
  
   render() {
+    this.addAllCreatedSprint();
     return (
       <div>
         <div class="row">
