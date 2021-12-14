@@ -85,8 +85,8 @@ class Postit extends Component {
                                 <div class="col-6">   
                                     <button class="settingsPostit" onClick={this.modifyPostit}>Modifier</button> {/* button to modify the postit */}
                                </div> 
-                               <div class="col-6">   
-                                    <button class="settingsPostit" onClick={this.onPostitDeleted}>Supprimer</button> {/* button to delete the postit */}
+                               <div class="col">   
+                                    <button class="settingsPostit resizeSettingsPostit" onClick={this.onPostitDeleted}>Supprimer</button> {/* button to delete the postit */}
                                </div> 
                             </div>
                         </div>

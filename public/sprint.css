@@ -148,9 +148,11 @@
 .column {
     margin-top: 2%;
     margin-bottom: 2%;
-    border: 0.2rem solid rgb(84, 70, 87);
+    border: 0.2rem solid rgb(129, 114, 131);
     border-radius: 10px;
     padding-bottom: 5%;
+    background:rgb(84, 70, 87);
+    color: white;
 }
 
 .placeInfos {
@@ -159,7 +161,7 @@
 
 .addPostitButton {
     margin:20%;
-    background-color: rgb(104, 56, 100);
+    background-color: rgb(119, 99, 116);
     border: 0;
     border-radius: 10px;
     width:100%;
@@ -175,12 +177,12 @@
 }
 
 .addPostitButton:hover {
-    background-color: rgb(163, 95, 154);
+    background-color: rgb(184, 169, 183);
 }
 
 .addPostitSubmit {
     margin: 10%;
-    background-color: rgb(104, 56, 100);
+    background-color: rgb(119, 99, 116);
     border: 0;
     border-radius: 10px;
     width:80%;
@@ -196,7 +198,7 @@
 }
 
 .addPostitSubmit:hover {
-    background-color: rgb(163, 95, 154);
+    background-color: rgb(184, 169, 183);
 }
 
 .postitStyle {
@@ -209,7 +211,7 @@
     font-family: "Open Sans";
     font-weight: lighter;
 
-    background: white;
+    background: rgb(184, 169, 183);
 }
 
 .formAddPostit {
@@ -288,14 +290,18 @@
     color: white;
 }
 
+.resizeSettingsPostit {
+    margin-top: 0%;
+}
+
 .settingsPostit:hover {
-    background-color: rgb(98, 105, 173);
+    background-color: rgb(84, 70, 87);
 }
 
 #modifyPostitStyle {
     margin-top: 25%;
     margin-bottom: 15%;
-    background-color: rgb(56, 103, 141);
+    background-color: rgb(119, 99, 116);
     border: 0;
     border-radius: 10px;
     width:100%;
@@ -311,7 +317,7 @@
 }
 
 #modifyPostitStyle:hover {
-    background-color: rgb(98, 105, 173);
+    background-color: rgb(84, 70, 87);
 }
 
 /* Sprint part */
@@ -319,7 +325,7 @@
 .addColumn {
     margin-top:3%;
     margin-left: 1%;
-    background-color: rgb(56, 103, 141);
+    background-color: rgb(119, 99, 116);
     border: 0;
     border-radius: 5px;
     text-align: center;
@@ -331,6 +337,10 @@
     font-family: "Open Sans";
     font-weight: lighter;
     color:white;
+}
+
+.addColumn:hover {
+    background:rgb(84, 70, 87);
 }
 
 .resizeColumnKanban {
