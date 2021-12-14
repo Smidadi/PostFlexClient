@@ -14,7 +14,7 @@ class ProjectList extends Component {
     event.preventDefault()
     const array = this.state.projects.slice()
     const num = array.length.toString()
-    this.setState({projects:[...this.state.projects, <Project num={num} accessProject={this.props.accessKanban}/>]})
+    this.setState({projects:[...this.state.projects, <Project num={num} accessProject={this.props.accessProject}/>]})
   }
  
   render() {

@@ -10,12 +10,17 @@ class BlockToDisplay extends Component {
             hideProjects: false,
             hideSprints: true,
             hideKanban: true,
-            kanban: null
+            kanban: null,
+            sprintList: null
         };
     }
 
     getKanban = (kanban) => {
         this.setState({hideSprints: true, hideKanban:false, kanban:kanban})
+    }
+
+    getSprintList = (sprintList) => {
+        this.setState({hideProjects: true, hideSprints: false, sprintList: sprintList})
     }
 
     backToSprintList = () => {
@@ -26,12 +31,12 @@ class BlockToDisplay extends Component {
         return (
             <div class="col-9">
                 <div hidden={this.state.hideProjects}>
-                    <ProjectList />
+                    <ProjectList accessProject={this.getSprintList} />
                 </div>
                 <div hidden={this.state.hideSprints}>
                     <SprintList accessKanban2={this.getKanban} />
                 </div>
-                 <div hidden={this.state.hideSprints}>
+                 <div hidden={!this.state.hideSprints || !this.state.hideProjects}>
                     <button class="backSprintButton" onClick={this.backToSprintList}>
                         <img src="../../back.png" width="30px" height="30px" />
                     </button>
