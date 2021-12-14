@@ -109,12 +109,12 @@ class KanbanColumn extends Component {
   render() {
 
       return (
-      <div class="col-12 column test">
+      <div class="col-12 column ">
           {this.props.canPut === true ? // Is a postit from any column currently moving ?
           <button class="settingsPostit" onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
           :
           null}
-          <div class="row resizeTitlePostit" id="title" hidden={this.state.titleModifying}>
+          <div class="row resizeTitlePostit justify-content-center" id="title" hidden={this.state.titleModifying}>
               {this.state.title}
               <button class="modifyMainBarInfos inverseColor" onClick={this.handleTitleModify}><img src="../../pen.png" width="15px" /></button>
           </div>
