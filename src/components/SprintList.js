@@ -10,9 +10,13 @@ class SprintList extends Component {
     };
   }
   
-    test = (kanban) => {
-      this.props.accessKanban2(kanban)
-    }
+  test = (kanban) => {
+    this.props.accessKanban2(kanban)
+  }
+
+  componentDidMount = () => {
+    this.addAllCreatedSprint();
+  }
   
   handleAddSprint = (event) => {
     event.preventDefault()

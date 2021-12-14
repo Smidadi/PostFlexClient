@@ -15,10 +15,53 @@ class KanbanColumn extends Component {
     this.postitListRef = React.createRef(); // will be a ref to an instance of a component
   }
 
+  componentDidMount = () => {
+    const requestOptions = {
+      method: 'GET', 
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    };
+    fetch("http://localhost:3001/post_it/all", requestOptions)
+        .then(res => res.json())
+        .then(res => this.updatePostitList(res))
+        .catch(err => err)
+  }
+
+  updatePostitList = (postitListJson) => {
+    console.log("POSTIT LIST : ")
+    postitListJson.forEach(element => {
+      console.log(element);
+      if(element.id_colonne == this.props.id){
+          var colors = element.couleur.split(',');
+          colors = colors.filter(element => element !== "");
+          this.postitListRef.current.addPostit(element.id, element.date_creation, element.titre, element.description, colors);
+      }
+    });
+    console.log("END POSTIT LIST")
+  }
+
+  addPostit = (id, date, title, description, colors) => {
+    var couleursStr = ",";
+    colors.forEach(element => {
+      couleursStr += element + ","
+    });
+
+    const requestOptions = {
+      method: 'PUT', 
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    };
+    fetch("http://localhost:3001/post_it/change/" + id + "/id_colonne/" + this.props.id, requestOptions)
+      .then(response => response.json())
+      .then(data => console.log("RESPONSE" + data))
+      .catch(err => err);
+    this.postitListRef.current.addPostit(id, date, title, description, colors);
+  }
+
+  // Modif title
   handleTitleModify = () => {
     this.setState({titleModifying: true})
   }
-
   handleTitleSubmit = (event) => {
     event.preventDefault()
     const title = this.state.titleInput
@@ -43,7 +86,6 @@ class KanbanColumn extends Component {
     const value = event.currentTarget.value
     this.setState({maxInput: value})
   }
-
   handleTitleChange = (event) => {
     const value = event.currentTarget.value
     this.setState({titleInput: value})
@@ -60,8 +102,8 @@ class KanbanColumn extends Component {
     if(num_postits >= parseInt(this.state.max))
       alert("Il y a déjà le nombre max de postits dans cette colonne")
     else {
-      this.postitListRef.current.addPostit(this.props.newPostit.props.id, this.props.newPostit.props.title, 
-                this.props.newPostit.props.description, this.props.newPostit.props.colors);
+      this.addPostit(this.props.newPostit.props.id, this.props.newPostit.props.date, this.props.newPostit.props.title, 
+          this.props.newPostit.props.description, this.props.newPostit.props.colors);
       this.props.handlePostitPutted(); // informs the kanban
     }
   }
