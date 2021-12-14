@@ -116,7 +116,7 @@ class KanbanColumn extends Component {
           null}
           <div class="row resizeTitlePostit" id="title" hidden={this.state.titleModifying}>
               {this.state.title}
-              <button class="modifyMainBarInfos" onClick={this.handleTitleModify}><img src="../../pen.png" width="15px" /></button>
+              <button class="modifyMainBarInfos inverseColor" onClick={this.handleTitleModify}><img src="../../pen.png" width="15px" /></button>
           </div>
               <form hidden={!this.state.titleModifying} onSubmit={this.handleTitleSubmit}>
                 <input value={this.state.titleInput} onChange={this.handleTitleChange} type="text" placeholder={this.state.title} id="textMainBarInfos"></input>

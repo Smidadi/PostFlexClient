@@ -21,9 +21,6 @@ class Sprint extends Component {
         <div class="row column justify-content-center sizeBlockSprint" onClick={() => this.props.accessKanban(this.state.kanban)}>
           kanban
         </div>
-        <div class="row column justify-content-center sizeBlockSprint">
-          planning
-        </div>
       </div>
     )
   }
