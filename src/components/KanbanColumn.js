@@ -28,7 +28,6 @@ class KanbanColumn extends Component {
   }
 
   updatePostitList = (postitListJson) => {
-    console.log("POSTIT LIST : ")
     postitListJson.forEach(element => {
       console.log(element);
       if(element.id_colonne == this.props.id){
@@ -37,7 +36,6 @@ class KanbanColumn extends Component {
           this.postitListRef.current.addPostit(element.id, element.date_creation, element.titre, element.description, colors);
       }
     });
-    console.log("END POSTIT LIST")
   }
 
   addPostit = (id, date, title, description, colors) => {
@@ -111,7 +109,7 @@ class KanbanColumn extends Component {
   render() {
 
       return (
-      <div class="col-12 column">
+      <div class="col-12 column test">
           {this.props.canPut === true ? // Is a postit from any column currently moving ?
           <button class="settingsPostit" onClick={this.handlePutPostit}>Poser</button> // If yes, display a button to put the postit here
           :
