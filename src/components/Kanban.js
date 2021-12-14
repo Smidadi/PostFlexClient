@@ -17,11 +17,19 @@ class Kanban extends Component {
       columns: []//[<KanbanColumn id={uuidv4()} handlePostitPutted={this.handlePostitPutted} canPut={false} handleMove={this.handleMove} title="0"/>]
     };
   }
+
+  updateColumnList = (postitListJson) => {
+    postitListJson.forEach(element => {
+      console.log(this.state.columns);
+      this.setState({columns:[...this.state.columns, <KanbanColumn id={element.id} title={element.titre} max={element.max_tache} handlePostitPutted={this.handlePostitPutted} 
+        canPut={false} handleMove={this.handleMove}/>]})
+    });
+  }
   
   componentDidMount = () => {
     // set the ref to the productBacklog
     this.setState({productBacklogRef: this.context});
-    
+
     const requestOptions = {
       method: 'GET', 
       headers: { 'Content-Type': 'application/json' },
@@ -29,19 +37,11 @@ class Kanban extends Component {
     };
     fetch("http://localhost:3001/colonne/all/" + this.props.id_sprint, requestOptions)
         .then(res => res.json())
-        .then(res => this.updateColumnList(res))
+        .then(async res => await this.updateColumnList(res))
         .catch(err => err)
   }
 
-  updateColumnList = (postitListJson) => {
-    console.log("COLUMN LIST : ")
-    postitListJson.forEach(element => {
-      console.log(element);
-      this.setState({columns:[...this.state.columns, <KanbanColumn id={element.id} handlePostitPutted={this.handlePostitPutted} 
-        canPut={false} handleMove={this.handleMove} title={element.title}/>]})
-    });
-    console.log("END COLUMN LIST")
-  }
+ 
   
   // Ideally this method should not be used for that
   componentDidUpdate = () => {

@@ -320,6 +320,11 @@
     background-color: rgb(84, 70, 87);
 }
 
+.resizeCancelButton {
+    margin-top:0;
+    padding-top:0;
+}
+
 /* Sprint part */
 
 .addColumn {
@@ -361,4 +366,10 @@
 .resizeTitlePostit {
     font-size: large;
     padding:5%;
+    margin-bottom: 50%;
+}
+
+.scroller {
+    overflow-y: auto;
+    overflow-x: hidden;
 }
