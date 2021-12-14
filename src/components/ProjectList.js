@@ -25,10 +25,8 @@ class ProjectList extends Component {
   }
 
   updateProjectList = (projectList) => {
-    console.log("PROJECT LIST");
     projectList.forEach(element => {
-      console.log(element);
-      this.setState({projects:[...this.state.projects, <Project id={element.id_projet} title={element.name} 
+      this.setState({projects:[...this.state.projects, <Project id={element.id} title={element.name} 
         accessProject={this.props.accessProject}/>]})
     });
   }

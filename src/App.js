@@ -17,14 +17,49 @@ class App extends Component {
     super(props);
     this.state = {
       apiResponse: '',
+      isProjectOpen: false,
+      projectId: null,
+      productBacklogId: null,
       sprintHide: true
     };
 
     this.productBacklogRef = React.createRef();
   }
 
-  componentDidMount() {
-      
+  onProjectOpened = (id) => {
+
+    this.setState({projectId: id});
+
+    // check if product backlog exists
+    const requestOptions = {
+      method: 'GET', 
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    };
+    fetch("http://localhost:3001/colonne/all/" + this.state.projectId, requestOptions)
+        .then(res => res.json())
+        .then(async res => await this.updateProductBacklog(res))
+        .catch(err => err)
+
+  }
+
+  updateProductBacklog = (res) => {
+
+    // product backlog does not exist
+    if(res.length === 0){
+      const requestOptions = {
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'cors'
+      };
+      fetch("http://localhost:3001/colonne/new/" + this.state.projectId + "/" + this.state.projectId + "/Product Backlog", requestOptions)
+    }
+    
+    this.setState({isProjectOpen: true, productBacklogId: this.state.projectId});
+  }
+
+  onProjectClosed = () => {
+    this.setState({isProjectOpen: false, productBacklogId: null});
   }
   
   render() {
@@ -41,9 +76,12 @@ class App extends Component {
       </header>
       <div class="container-fluid ">
         <div class="row">
-          <ProductBacklog ref={this.productBacklogRef}/>
+          {this.state.productBacklogId !== null ?
+          <ProductBacklog ref={this.productBacklogRef} id={this.state.productBacklogId} />
+          :
+          null}
         <div class="col-1"></div>
-        <BlockToDisplay />
+        <BlockToDisplay openProject={this.onProjectOpened} closeProject={this.onProjectClosed}/>
         </div>
       </div>
     </div>

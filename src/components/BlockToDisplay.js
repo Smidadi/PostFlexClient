@@ -21,6 +21,7 @@ class BlockToDisplay extends Component {
     }
 
     getProjectId= (id) => {
+        this.props.openProject(id);
         this.setState({hideProjects: true, hideSprints: false, projectId: id})
     }
 
@@ -29,6 +30,7 @@ class BlockToDisplay extends Component {
     }
 
     backToProjectList = () => {
+        this.props.closeProject();
         this.setState({hideSprints:true, hideProjects: false, kanban:null})
     }
 

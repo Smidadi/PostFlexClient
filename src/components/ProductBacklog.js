@@ -50,7 +50,7 @@ class ProductBacklog extends Component {
 
     updatePostitList = (postitListJson) => {
         postitListJson.forEach(element => {
-            if(element.id_colonne == 0){
+            if(element.id_colonne === this.props.id){
                 var colors = element.couleur.split(',');
                 colors = colors.filter(element => element !== "");
                 this.postitListRef.current.addPostit(element.id, element.date_creation, element.titre, element.description, colors);
@@ -71,7 +71,7 @@ class ProductBacklog extends Component {
             headers: { 'Content-Type': 'application/json' },
             mode: 'cors'
         };
-        fetch("http://localhost:3001/post_it/new/" + id + "/" + 0 + "/" + date + "/" + title + "/" + 111 + "/" + description + "/" + couleursStr, requestOptions)
+        fetch("http://localhost:3001/post_it/new/" + id + "/" + this.props.id + "/" + date + "/" + title + "/" + 111 + "/" + description + "/" + couleursStr, requestOptions)
             .then(response => response.json())
             .then(data => console.log("RESPONSE" + data))
             .catch(err => err);

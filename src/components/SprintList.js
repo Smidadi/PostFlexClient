@@ -29,9 +29,7 @@ class SprintList extends Component {
   }
 
   updateSprintList = (sprintList) => {
-    console.log("SPRINT LIST");
     sprintList.forEach(element => {
-      console.log(element);
       if(element.id_projet === this.props.id_project) {
       this.setState({sprints:[...this.state.sprints, <Sprint id={element.id} id_projet={element.id_projet} title={element.titre} accessKanban={this.test}/>]})    
       }
