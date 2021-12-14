@@ -159,7 +159,7 @@ class ProductBacklog extends Component {
                                 placeholder="Couleur"
                             />
                             <input class="addPostitSubmit" type="submit" value="Ajouter postit" />
-                            <button class="addPostitSubmit" onClick={this.modifyCancel}>Annuler</button>
+                            <button class="addPostitSubmit resizeCancelButton" onClick={this.modifyCancel}>Annuler</button>
                         </form>
                     :
                     null
