@@ -27,7 +27,7 @@ class Kanban extends Component {
       headers: { 'Content-Type': 'application/json' },
       mode: 'cors'
     };
-    fetch("http://localhost:3001/colonne/all/" + 1, requestOptions)
+    fetch("http://localhost:3001/colonne/all/" + this.props.id_sprint, requestOptions)
         .then(res => res.json())
         .then(res => this.updateColumnList(res))
         .catch(err => err)
@@ -64,7 +64,7 @@ class Kanban extends Component {
       headers: { 'Content-Type': 'application/json' },
       mode: 'cors'
     };
-    fetch("http://localhost:3001/colonne/new/" + 1 + "/" + id + "/" + title, requestOptions)
+    fetch("http://localhost:3001/colonne/new/" + this.props.id_sprint + "/" + id + "/" + title, requestOptions)
 
     this.setState({columns:[...this.state.columns, <KanbanColumn id={id} handlePostitPutted={this.handlePostitPutted} 
       canPut={false} handleMove={this.handleMove} title={title}/>]})

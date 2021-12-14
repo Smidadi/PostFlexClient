@@ -100,6 +100,9 @@ class ProductBacklog extends Component {
                                 this.state.newPostitDescription === '' ? "Description" : this.state.newPostitDescription, this.state.newPostitColors);
         this.setState({isAddingPostit: false, newPostitTitle: '', newPostitDescription: '', newPostitColors: []});
     }
+    modifyCancel = () => {
+        this.setState({isAddingPostit: false, newPostitTitle: '', newPostitDescription: '', newPostitColors: []});
+    }
     //==============================
 
     // Calling from children when a postit starts moving
@@ -159,6 +162,7 @@ class ProductBacklog extends Component {
                                 placeholder="Couleur"
                             />
                             <input class="addPostitSubmit" type="submit" value="Ajouter postit" />
+                            <button class="addPostitSubmit" onClick={this.modifyCancel}>Annuler</button>
                         </form>
                     :
                     null
