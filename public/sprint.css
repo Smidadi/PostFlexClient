@@ -203,7 +203,7 @@
 
 .postitStyle {
     border-radius: 3%;
-    border: 0.1rem solid black;
+    border: 0.1rem solid rgb(119, 99, 116);
 
     margin-top: 5%;
     padding: 2%;
@@ -320,6 +320,11 @@
     background-color: rgb(84, 70, 87);
 }
 
+.resizeCancelButton {
+    margin-top:0;
+    padding-top:0;
+}
+
 /* Sprint part */
 
 .addColumn {
@@ -346,6 +351,7 @@
 .resizeColumnKanban {
     margin-left:2%;
     margin-bottom: 2%;
+    width: 10%;
 }
 
 .backSprintButton {
@@ -357,6 +363,12 @@
 }
 
 .resizeTitlePostit {
-    padding:10%;
     font-size: large;
+    padding:5%;
+    margin-bottom: 50%;
+}
+
+.scroller {
+    overflow-y: auto;
+    overflow-x: hidden;
 }
