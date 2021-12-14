@@ -9,6 +9,7 @@ import SprintList from './components/SprintList';
 import BlockToDisplay from './components/BlockToDisplay';
 
 import {ProductBacklogContext} from './components/Context';
+import Sprint from './components/Sprint';
 
 class App extends Component {
 
@@ -28,11 +29,11 @@ class App extends Component {
           .then(res => this.setState({ apiResponse: res }))
           .catch(err => err);
   }
- 
+ */
+
   componentDidMount() {
-      this.callAPI();
+      
   }
-*/
   render() {
     return (
     <ProductBacklogContext.Provider value={this.productBacklogRef}>

@@ -36,15 +36,22 @@ class SprintList extends Component {
   addAllCreatedSprint = async () => {
     await fetch('http://localhost:3001/sprint/all/')
     .then(response => {
-      console.log(response);
+      response.json().then((res) => {
+       res.forEach(element => {
+          this.setState({sprints:[...this.state.sprints, <Sprint num={element.id}/>]})    
+       }); 
+      });
     })
-    .catch(() => {
-      console.log("error");
+    .catch((err) => {
+      console.error(err);
     })
+  }
+
+  componentDidMount() {
+    this.addAllCreatedSprint();
   }
  
   render() {
-    this.addAllCreatedSprint();
     return (
       <div>
         <div class="row">
