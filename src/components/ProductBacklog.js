@@ -37,7 +37,6 @@ class ProductBacklog extends Component {
     }
 
     componentDidMount = () => {
-        console.log("GET");
         const requestOptions = {
             method: 'GET', 
             headers: { 'Content-Type': 'application/json' },
@@ -50,7 +49,6 @@ class ProductBacklog extends Component {
     }
 
     updatePostitList = (postitListJson) => {
-        console.log("POSTIT LIST : ")
         postitListJson.forEach(element => {
             console.log(element);
             if(element.id_colonne == 0){
@@ -59,7 +57,6 @@ class ProductBacklog extends Component {
                 this.postitListRef.current.addPostit(element.id, element.date_creation, element.titre, element.description, colors);
             }
         });
-        console.log("END POSTIT LIST")
     }
 
     // add postit to db
