@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sprint from './Sprint';
+import { v4 as uuidv4 } from 'uuid';
 
 class SprintList extends Component {
   
@@ -15,18 +16,38 @@ class SprintList extends Component {
   }
 
   componentDidMount = () => {
-    this.addAllCreatedSprint();
+    const requestOptions = {
+      method: 'GET', 
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    };
+    const id_user = 0;
+    fetch('http://localhost:3001/sprint/all', requestOptions)
+        .then(res => res.json())
+        .then(res => this.updateSprintList(res))
+        .catch(err => err)
+  }
+
+  updateSprintList = (sprintList) => {
+    console.log("SPRINT LIST");
+    sprintList.forEach(element => {
+      console.log(element);
+      if(element.id_projet === this.props.id_project) {
+      this.setState({sprints:[...this.state.sprints, <Sprint id={element.id} id_projet={element.id_projet} title={element.titre} accessKanban={this.test}/>]})    
+      }
+    }); 
   }
   
   handleAddSprint = (event) => {
     event.preventDefault()
     const array = this.state.sprints.slice()
     const num = array.length.toString()
-    this.setState({sprints:[...this.state.sprints, <Sprint num={num} accessKanban={this.test}/>]})
-    this.addNewSprintInBdd(num);  
+    const id = uuidv4();
+    this.setState({sprints:[...this.state.sprints, <Sprint id={id} id_project={this.props.id_project} title={num} accessKanban={this.test}/>]})
+    this.addNewSprintInBdd(id, this.props.id_project, num);  
   }
 
-  addNewSprintInBdd = (num) => {
+  addNewSprintInBdd = (id, id_project, title) => {
     const headers = new Headers();
     const restQry = {
       method : 'POST',
@@ -34,25 +55,8 @@ class SprintList extends Component {
       mode : 'cors'
     };
     const date = new Date();
-    fetch('http://localhost:3001/sprint/new/'+num+'/'+date.getDay()+'-'+date.getMonth()+'-'+date.getFullYear(),restQry);
-  }
-
-  addAllCreatedSprint = async () => {
-    await fetch('http://localhost:3001/sprint/all/')
-    .then(response => {
-      response.json().then((res) => {
-       res.forEach(element => {
-          this.setState({sprints:[...this.state.sprints, <Sprint num={element.id} accessKanban={this.test}/>]})    
-       }); 
-      });
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-  }
-
-  componentDidMount() {
-    this.addAllCreatedSprint();
+    fetch('http://localhost:3001/sprint/new/'+id+'/'+date.getDay()+'-'+date.getMonth()+'-'+date.getFullYear() + "/" +
+                                          id_project + "/" + title,restQry);
   }
  
   render() {

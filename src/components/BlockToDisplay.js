@@ -11,7 +11,8 @@ class BlockToDisplay extends Component {
             hideSprints: true,
             hideKanban: true,
             kanban: null,
-            sprintList: null
+            sprintList: null,
+            projectId: null
         };
     }
 
@@ -19,29 +20,40 @@ class BlockToDisplay extends Component {
         this.setState({hideSprints: true, hideKanban:false, kanban:kanban})
     }
 
-    getSprintList = (sprintList) => {
-        this.setState({hideProjects: true, hideSprints: false, sprintList: sprintList})
+    getProjectId= (id) => {
+        this.setState({hideProjects: true, hideSprints: false, projectId: id})
     }
 
     backToSprintList = () => {
         this.setState({hideSprints:false, hideKanban:true, kanban:null})
     }
 
+    backToProjectList = () => {
+        this.setState({hideSprints:true, hideProjects: false, kanban:null})
+    }
+
     render() {
         return (
             <div class="col-9">
-                <div hidden={this.state.hideProjects}>
-                    <ProjectList accessProject={this.getSprintList} />
-                </div>
-                <div hidden={this.state.hideSprints}>
-                    <SprintList accessKanban2={this.getKanban} />
-                </div>
                  <div hidden={!this.state.hideSprints || !this.state.hideProjects}>
                     <button class="backSprintButton" onClick={this.backToSprintList}>
                         <img src="../../back.png" width="30px" height="30px" />
                     </button>
-                    kanban
+                    Kanban
                     {this.state.kanban}
+                </div>
+                <div hidden={this.state.hideSprints || !this.state.hideKanban}>
+                    <button class="backSprintButton" onClick={this.backToProjectList}>
+                        <img src="../../back.png" width="30px" height="30px" />
+                    </button>
+                    Projet
+                    {this.state.hideSprints === false ?
+                    <SprintList id_project={this.state.projectId} accessKanban2={this.getKanban} />
+                    :
+                    null}
+                </div>
+                <div hidden={this.state.hideProjects}>
+                    <ProjectList accessProject={this.getProjectId} />
                 </div>
             </div>
         )

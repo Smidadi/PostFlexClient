@@ -29,7 +29,6 @@ class KanbanColumn extends Component {
 
   updatePostitList = (postitListJson) => {
     postitListJson.forEach(element => {
-      console.log(element);
       if(element.id_colonne == this.props.id){
           var colors = element.couleur.split(',');
           colors = colors.filter(element => element !== "");
