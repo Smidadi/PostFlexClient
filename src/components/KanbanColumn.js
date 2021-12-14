@@ -29,7 +29,6 @@ class KanbanColumn extends Component {
 
   updatePostitList = (postitListJson) => {
     postitListJson.forEach(element => {
-      console.log(element);
       if(element.id_colonne == this.props.id){
           var colors = element.couleur.split(',');
           colors = colors.filter(element => element !== "");
@@ -51,14 +50,15 @@ class KanbanColumn extends Component {
     };
     fetch("http://localhost:3001/post_it/change/" + id + "/id_colonne/" + this.props.id, requestOptions)
       .then(response => response.json())
-      .then(data => console.log("RESPONSE" + data))
       .catch(err => err);
     this.postitListRef.current.addPostit(id, date, title, description, colors);
   }
 
   // Modif title
   handleTitleModify = () => {
-    this.setState({titleModifying: true})
+    this.setState({titleModifying: true});
+
+   
   }
   handleTitleSubmit = (event) => {
     event.preventDefault()
@@ -78,6 +78,16 @@ class KanbanColumn extends Component {
       alert("Le max doit être un nombre")
     else if(modified)
       this.setState({title: title, titleModifying: false, titleInput: title, max: max, maxInput: max})
+
+      const headers = new Headers();
+      const restQry = {
+        method : 'PUT',
+        headers : headers,
+        mode : 'cors'
+      };
+  
+      fetch("http://localhost:3001/colonne/change_titre/"+this.props.id+"/"+this.state.titleInput, restQry)
+        .catch(err => console.error(err))
   }
 
   handleMaxChange = (event) => {
