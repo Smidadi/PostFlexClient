@@ -160,6 +160,7 @@ class ProductBacklog extends Component {
                                 styles={this.state.colorStyles}
                                 onChange={this.handleMultiChange}
                                 placeholder="Couleur"
+                                
                             />
                             <input class="addPostitSubmit" type="submit" value="Ajouter postit" />
                             <button class="addPostitSubmit" onClick={this.modifyCancel}>Annuler</button>

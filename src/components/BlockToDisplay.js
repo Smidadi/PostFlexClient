@@ -7,8 +7,8 @@ class BlockToDisplay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hideProjects: true,
-            hideSprints: false,
+            hideProjects: false,
+            hideSprints: true,
             hideKanban: true,
             kanban: null
         };
@@ -31,7 +31,7 @@ class BlockToDisplay extends Component {
                 <div hidden={this.state.hideSprints}>
                     <SprintList accessKanban2={this.getKanban} />
                 </div>
-                    <div hidden={!this.state.hideSprints}>
+                 <div hidden={this.state.hideSprints}>
                     <button class="backSprintButton" onClick={this.backToSprintList}>
                         <img src="../../back.png" width="30px" height="30px" />
                     </button>

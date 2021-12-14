@@ -13,7 +13,7 @@ class Project extends Component {
   render() {
     return (
       <div class="col"> 
-        <div class="row column justify-content-center sizeBlockSprint" onClick={() => this.props.accessProject(this.state.kanban)}>
+        <div class="row column justify-content-center sizeBlockSprint" onClick={() => this.props.accessProject(this.state.sprintList)}>
           {this.state.title}
         </div>
       </div>

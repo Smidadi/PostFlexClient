@@ -105,7 +105,7 @@ class Kanban extends Component {
         </div>
         <div>
           {this.state.isMovingPostit === false ? // if a postit is currently moving, hide the button
-          <button class="addColumn" onClick={this.handleClick}>+</button> // button to add a new column
+          <button class="addColumn" onClick={this.handleClick}>Ajouter colonne</button> // button to add a new column
           :
           null
           }
