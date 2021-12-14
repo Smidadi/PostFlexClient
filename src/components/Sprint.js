@@ -8,7 +8,7 @@ class Sprint extends Component {
     this.state = {
       num: props.num,
       title: "titre",
-      kanban: <Kanban title={"kanban du sprint n°"+props.num}/>
+      kanban: <Kanban id_sprint={this.props.num} title={"kanban du sprint n°"+props.num}/>
     };
   }
 

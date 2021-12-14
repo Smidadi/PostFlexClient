@@ -23,14 +23,6 @@ class App extends Component {
     this.productBacklogRef = React.createRef();
   }
 
-/*   callAPI() {
-      fetch("http://localhost:3000/testAPI")
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }))
-          .catch(err => err);
-  }
- */
-
   componentDidMount() {
       
   }

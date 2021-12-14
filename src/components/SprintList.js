@@ -42,7 +42,7 @@ class SprintList extends Component {
     .then(response => {
       response.json().then((res) => {
        res.forEach(element => {
-          this.setState({sprints:[...this.state.sprints, <Sprint num={element.id}/>]})    
+          this.setState({sprints:[...this.state.sprints, <Sprint num={element.id} accessKanban={this.test}/>]})    
        }); 
       });
     })
