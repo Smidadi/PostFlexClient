@@ -28,7 +28,6 @@ class KanbanColumn extends Component {
   }
 
   updatePostitList = (postitListJson) => {
-    console.log("POSTIT LIST : ")
     postitListJson.forEach(element => {
       console.log(element);
       if(element.id_colonne == this.props.id){
@@ -37,7 +36,6 @@ class KanbanColumn extends Component {
           this.postitListRef.current.addPostit(element.id, element.date_creation, element.titre, element.description, colors);
       }
     });
-    console.log("END POSTIT LIST")
   }
 
   addPostit = (id, date, title, description, colors) => {
