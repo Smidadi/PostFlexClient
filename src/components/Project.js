@@ -10,10 +10,15 @@ class Project extends Component {
     };
   }
 
+  accessProject = () => {
+    console.log(this.props.id);
+    this.props.accessProject(this.props.id)
+  }
+
   render() {
     return (
       <div class="col"> 
-        <div class="row column justify-content-center sizeBlockSprint" onClick={() => this.props.accessProject(this.props.id)}>
+        <div class="row column justify-content-center sizeBlockSprint" onClick={this.accessProject}>
           {this.state.title}
         </div>
       </div>

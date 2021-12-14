@@ -12,16 +12,35 @@ class BlockToDisplay extends Component {
             hideKanban: true,
             kanban: null,
             sprintList: null,
-            projectId: null
+            projectId: null,
+            idUser: this.props.idUser,
+            openProject: this.props.openProject,
+            closeProject: this.props.closeProject
         };
+    }
+
+    connect = (idUser, onProjectOpened, onProjectClosed) => {
+        this.setState({idUser: idUser, openProject: onProjectOpened, closeProject: onProjectClosed});
+    }
+
+    disconnect = () => {
+        this.setState({
+            hideProjects: false,
+            hideSprints: true,
+            hideKanban: true,
+            kanban: null,
+            sprintList: null,
+            projectId: null
+        });
     }
 
     getKanban = (kanban) => {
         this.setState({hideSprints: true, hideKanban:false, kanban:kanban})
     }
 
-    getProjectId= (id) => {
-        this.props.openProject(id);
+    getProjectId = (id) => {
+        console.log(id);
+        this.state.openProject(id);
         this.setState({hideProjects: true, hideSprints: false, projectId: id})
     }
 
@@ -30,7 +49,7 @@ class BlockToDisplay extends Component {
     }
 
     backToProjectList = () => {
-        this.props.closeProject();
+        this.state.closeProject();
         this.setState({hideSprints:true, hideProjects: false, kanban:null})
     }
 
@@ -55,7 +74,7 @@ class BlockToDisplay extends Component {
                     null}
                 </div>
                 <div hidden={this.state.hideProjects}>
-                    <ProjectList accessProject={this.getProjectId} />
+                    <ProjectList idUser={this.state.idUser} accessProject={this.getProjectId} />
                 </div>
             </div>
         )

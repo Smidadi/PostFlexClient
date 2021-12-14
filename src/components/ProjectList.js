@@ -17,16 +17,17 @@ class ProjectList extends Component {
       headers: { 'Content-Type': 'application/json' },
       mode: 'cors'
     };
-    const id_user = 0;
-    fetch("http://localhost:3001/projet/all_projects_from_user/" + id_user, requestOptions)
+    fetch("http://localhost:3001/projet/all_projects_from_user/" + this.props.idUser, requestOptions)
         .then(res => res.json())
         .then(res => this.updateProjectList(res))
         .catch(err => err)
   }
 
   updateProjectList = (projectList) => {
+    console.log("PROJECTS");
     projectList.forEach(element => {
-      this.setState({projects:[...this.state.projects, <Project id={element.id} title={element.name} 
+      console.log(element);
+      this.setState({projects:[...this.state.projects, <Project id={element.id_projet} title={element.name} 
         accessProject={this.props.accessProject}/>]})
     });
   }
@@ -46,7 +47,7 @@ class ProjectList extends Component {
       headers : headers,
       mode : 'cors'
     };
-    fetch('http://localhost:3001/projet/add_new/' + id + "/" + 0 + "/" + title, restQry);
+    fetch('http://localhost:3001/projet/add_new/' + id + "/" + this.props.idUser + "/" + title, restQry);
   }
   
   render() {

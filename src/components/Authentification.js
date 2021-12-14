@@ -15,15 +15,40 @@ class Authentification extends Component {
 
   handleAuthentificationSubmit = (event) => {
     event.preventDefault()
-    let connect = false
+
+    // check if product backlog exists
+    const requestOptions = {
+      method: 'GET', 
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    };
+    fetch("http://localhost:3001/user/get_by_id/" + this.state.idInput, requestOptions)
+        .then(res => res.json())
+        .then(async res => await this.checkUser(res))
+        .catch(err => err)
+
+    /*   
     myDB.users.forEach(element => {
         if(this.state.idInput === element.id && this.state.passwordInput === element.password)
             connect = true   
     });
-        if(connect)
-            this.setState({connected:true, userConnected:this.state.idInput})
-        else
-            alert("Vérifiez votre identifiant ou votre mot de passe.")
+        
+    */
+  }
+
+  checkUser = (res) => {
+    let connect = false
+    res.forEach(element => {
+        if(this.state.idInput === element.id && this.state.passwordInput === element.mdp)
+            connect = true 
+    });
+
+    if(connect) {
+        this.setState({connected:true, userConnected:this.state.idInput})
+        this.props.onConnection(this.state.idInput);
+    }
+    else
+        alert("Vérifiez votre identifiant ou votre mot de passe.")
   }
 
   handleSignupSubmit = (event) => {
@@ -34,6 +59,7 @@ class Authentification extends Component {
   handleDisconnectSubmit = (event) => {
     event.preventDefault()
     this.setState({idInput:'', passwordInput:'', signup: false, connected: false, userConnected: ''})
+    this.props.onConnectionClosed();
   }
 
   handleBackSubmit = (event) => {
@@ -53,21 +79,49 @@ class Authentification extends Component {
 
   handleAddUserSubmit = (event) => {
     event.preventDefault()
-    let userAllowed = true
-    myDB.users.forEach((element) => {
+
+    const requestOptions = {
+        method: 'GET', 
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'cors'
+    };
+    fetch("http://localhost:3001/user/get_by_id/" + this.state.idInput, requestOptions)
+        .then(res => res.json())
+        .then(async res => {await this.checkUserExist(res)})
+        .catch(err => err)
+
+    /*myDB.users.forEach((element) => {
         if(this.state.idInput === element.id){
             alert("Cet utilisateur existe déjà.")
             userAllowed = false
         }
+    });*/
+  }
+
+  checkUserExist = (res) => {
+    let userAllowed = true
+    res.forEach(element => {
+        if(this.state.idInput === element.id){
+            alert("Cet utilisateur existe déjà.")
+            userAllowed = false;
+        }
     });
+
     if(userAllowed){
         if(this.state.passwordInput.length < 6)
             alert("Le mot de passe est trop court, il doit contenir 6 caractères minimum.")
         else{
-            myDB.users[myDB.users.length] = {
+
+            const requestOptions = {
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' },
+                mode: 'cors'
+            };
+            fetch("http://localhost:3001/user/new/" + this.state.idInput + "/name/" + this.state.passwordInput, requestOptions)
+            /*myDB.users[myDB.users.length] = {
                 "id":this.state.idInput,
                 "password":this.state.passwordInput
-            }
+            }*/
             this.setState({idInput: '', passwordInput: '', signup:false})
             alert("Votre compte a bien été créé.")
         }
