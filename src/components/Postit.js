@@ -5,10 +5,8 @@ class Postit extends Component {
 
     constructor(props) {
         super(props);
-        var today = new Date(),
-            date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-        this.state = {  date: date, 
-                        isModifyingPostit: false, 
+       
+        this.state = { isModifyingPostit: false, 
                         newTitle: this.props.title, 
                         newDescription: this.props.description,
                         newColors: this.props.colors,
@@ -44,13 +42,12 @@ class Postit extends Component {
     }
     handleSubmit = (event) => {
         this.setState({isModifyingPostit: false});
-        this.props.onPostitModified(this, this.state.newTitle, this.state.newDescription, this.state.newColors);
+        this.props.onPostitModified(this, this.state.newTitle, this.props.date, this.state.newDescription, this.state.newColors);
     }
     
 
     // Called when the button to move the postit is triggered
     onClickMove = (event) => {
-        console.log(this.props.title);
         this.props.handleMove(this);
     }
 

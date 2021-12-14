@@ -14,10 +14,40 @@ class KanbanColumn extends Component {
     this.postitListRef = React.createRef(); // will be a ref to an instance of a component
   }
 
+  componentDidMount = () => {
+    console.log("GET");
+    fetch("http://localhost:3000/post_it/all")
+        .then(res => res.json)
+        .then(res => this.updatePostitList(res))
+        .catch(err => err)
+  }
+
+  updatePostitList = (postitListJson) => {
+    console.log("POSTIT LIST : " + postitListJson)
+  }
+
+  addPostit = (id, date, title, description, colors) => {
+
+    var couleursStr = "";
+    colors.forEach(element => {
+      couleursStr += element + ","
+    });
+
+    const requestOptions = {
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' },
+    };
+    fetch("http://localhost:3000/post_it/new/" + id + "/" + date + "/1/" + title + "/" + description + "/" + "green", requestOptions)
+      .then(response => response.json())
+      .then(data => console.log("RESPONSE" + data))
+      .catch(err => err);
+    this.postitListRef.current.addPostit(id, date, title, description, colors);
+  }
+
+  // Modif title
   handleTitleModify = () => {
     this.setState({titleModifying: true})
   }
-
   handleTitleSubmit = (event) => {
     event.preventDefault()
     const title = this.state.titleInput
@@ -28,7 +58,6 @@ class KanbanColumn extends Component {
     else
       this.setState({title: title, titleModifying: false, titleInput: ''})
   }
-
   handleTitleChange = (event) => {
     const value = event.currentTarget.value
     this.setState({titleInput: value})
@@ -41,7 +70,7 @@ class KanbanColumn extends Component {
 
   // Calling when the button to put the postit currently moving is triggered
   handlePutPostit = () => {
-    this.postitListRef.current.addPostit(this.props.newPostit.props.id, this.props.newPostit.props.title, 
+    this.addPostit(this.props.newPostit.props.id, this.props.newPostit.props.date, this.props.newPostit.props.title, 
               this.props.newPostit.props.description, this.props.newPostit.props.colors);
     this.props.handlePostitPutted(); // informs the kanban
   }

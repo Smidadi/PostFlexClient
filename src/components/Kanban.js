@@ -36,7 +36,6 @@ class Kanban extends Component {
   // If a postit has started to move
   handleMove = (component) => {
     // we inform every column that they can now display a button to put the postit
-    console.log(component);
     this.setState({isMovingPostit: true,
       columns: this.state.columns.map((element) => React.cloneElement(element, {canPut: true, newPostit:<Postit {...component.props}/>}))});
     // we inform the productBacklog too

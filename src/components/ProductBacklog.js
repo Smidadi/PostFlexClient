@@ -58,8 +58,10 @@ class ProductBacklog extends Component {
         this.setState({newPostitColors: option.map(o => o.value)} );
     }
     handleSubmit = (event) => {
+        var today = new Date(), date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+        this.postitListRef.current.addPostit(uuidv4(), date, this.state.newPostitTitle === '' ? "Titre" : this.state.newPostitTitle, 
+                                this.state.newPostitDescription === '' ? "Description" : this.state.newPostitDescription, this.state.newPostitColors);
         this.setState({isAddingPostit: false, newPostitTitle: '', newPostitDescription: '', newPostitColors: []});
-        this.postitListRef.current.addPostit(uuidv4(), this.state.newPostitTitle, this.state.newPostitDescription, this.state.newPostitColors);
     }
     //==============================
 
@@ -71,7 +73,7 @@ class ProductBacklog extends Component {
     
     // Calling when the button to put the postit currently moving is triggered
     handlePutPostit = () => {
-        this.postitListRef.current.addPostit(this.state.postitToPut.props.id, this.state.postitToPut.props.title, 
+        this.postitListRef.current.addPostit(this.state.postitToPut.props.id, this.state.postitToPut.props.date, this.state.postitToPut.props.title, 
                 this.state.postitToPut.props.description, this.state.postitToPut.props.colors);
         this.handlePutPostitKanban(); // informs the kanban
     }
