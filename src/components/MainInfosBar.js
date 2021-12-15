@@ -58,7 +58,7 @@ class MainInfosBar extends Component {
   render() {
     return (
         <div class="col-9 headSprint">
-            <h3>
+            <h3 class="siteTitle">
               POSTFLEX
             </h3>
             {this.props.isProjectOpen === true && this.props.isConnected ?

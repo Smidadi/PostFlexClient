@@ -55,8 +55,9 @@ class Kanban extends Component {
   }
 
   addColumn = () => {
-    const array = this.state.columns.slice()
-    const title = array.length.toString()
+    const array = this.state.columns.slice();
+    const num = array.length.toString();
+    const title = "Titre";
     const id = uuidv4();
     
     const requestOptions = {
@@ -105,7 +106,7 @@ class Kanban extends Component {
         </div>
         <div>
           {this.state.isMovingPostit === false ? // if a postit is currently moving, hide the button
-          <button class="addColumn" onClick={this.handleClick}>Ajouter colonne</button> // button to add a new column
+          <button  class="addColumn changeBottomButton" onClick={this.handleClick}>Ajouter colonne</button> // button to add a new column
           :
           null
           }

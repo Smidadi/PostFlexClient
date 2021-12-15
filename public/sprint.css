@@ -373,3 +373,16 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.siteTitle {
+    color: white;
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-size: xx-large;
+    margin-top: 2%;
+    margin-left: 2%;
+    
+}
+.changeBottomButton {
+    margin-bottom: 5%;
+}

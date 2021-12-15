@@ -5,7 +5,7 @@ class KanbanColumn extends Component {
 
   constructor(props) {
     super(props);
-      this.state = {  title: 'Titre',
+      this.state = {  title: props.title,
                       titleModifying: false,
                       titleInput: 'Titre',
                       max: '5',
