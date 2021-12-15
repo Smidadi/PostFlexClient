@@ -1,9 +1,15 @@
+/* Barre principale : titre, date, authentification */
+
 .headSprint {
-    background : rgb(179, 124, 133);
+    background : rgb(84, 70, 87);
 }
 
 .loginColor {
-    background: rgb(92, 58, 97);
+    background: rgb(129, 114, 131);
+}
+
+.textColor {
+    color:white;
 }
 
 .infoSprint {
@@ -13,19 +19,26 @@
 }
 
 .idFont {
-    padding-left:5%;
+    padding-left:10%;
     padding-top: 5%;
     padding-bottom: 2%;
 }
 
 .mdpFont {
-    padding-left:5%;
+    padding-left:10%;
     padding-top: 2%;
     padding-bottom: 5%;
 }
 
 
 #inputLogin {
+    border-radius: 10px;
+    font-style: italic;
+    border-color: transparent;
+    width:75%;
+}
+
+#inputMdp {
     border-radius: 10px;
     font-style: italic;
     border-color: transparent;
@@ -42,7 +55,334 @@
     font-weight: lighter;
 }
 
+.connectedMsg {
+    color:white;
+    font-family: "Open Sans";
+    font-weight: lighter;
+    font-size: 2rem;
+    padding-left:5%;
+    padding-top:5%;
+}
+
 .icon {
     height: 20px;
     width: 20px;
+}
+
+.allButton {
+    background-color: white;
+    border: 0;
+    border-radius: 10px;
+    text-align: center;
+    border:1px solid transparent; 
+    -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    cursor: pointer;
+
+    font-family: "Open Sans";
+    font-weight: lighter;
+}
+
+.allButton:hover {
+    background-color: rgb(84, 70, 87);
+}
+
+.connexionButton {
+    width: 70%;
+    margin-left:15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.inscriptionButton {
+    width: 70%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.confirmButton {
+    width: 70%;
+    margin-left:15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.backButton {
+    width: 70%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.disconnectButton {
+    margin-left: 5%;
+    margin-top:5%;
+    margin-bottom:5%;
+}
+
+.modifyMainBarInfos {
+    background: transparent;
+    border: none !important;
+    padding-left:2%;
+}
+
+.inverseColor {
+    filter: invert(100%); 
+    -webkit-filter:invert(100%); 
+}
+
+#textMainBarInfos {
+    border-radius: 5px;
+    font-style: italic;
+    border-color: transparent;
+    width:35%;
+}
+
+.confirmMainBarInfos {
+    padding-left: 5%;
+}
+
+/* Product backlog */
+
+.column {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 0.2rem solid rgb(129, 114, 131);
+    border-radius: 10px;
+    padding-bottom: 5%;
+    background:rgb(84, 70, 87);
+    color: white;
+}
+
+.placeInfos {
+    padding: 20%;
+}
+
+.addPostitButton {
+    margin:20%;
+    background-color: rgb(119, 99, 116);
+    border: 0;
+    border-radius: 10px;
+    width:100%;
+    text-align: center;
+    border:1px solid transparent; 
+    -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    cursor: pointer;
+
+    font-family: "Open Sans";
+    font-weight: lighter;
+    color: white;
+}
+
+.addPostitButton:hover {
+    background-color: rgb(184, 169, 183);
+}
+
+.addPostitSubmit {
+    margin: 10%;
+    background-color: rgb(119, 99, 116);
+    border: 0;
+    border-radius: 10px;
+    width:80%;
+    text-align: center;
+    border:1px solid transparent; 
+    -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    cursor: pointer;
+
+    font-family: "Open Sans";
+    font-weight: lighter;
+    color: white;
+}
+
+.addPostitSubmit:hover {
+    background-color: rgb(184, 169, 183);
+}
+
+.postitStyle {
+    border-radius: 3%;
+    border: 0.1rem solid rgb(119, 99, 116);
+
+    margin-top: 5%;
+    padding: 2%;
+
+    font-family: "Open Sans";
+    font-weight: lighter;
+
+    background: rgb(184, 169, 183);
+}
+
+.formAddPostit {
+    padding:20%;
+    width:100%;
+}
+
+.formLabelsize {
+    width:100%;
+}
+
+.formLabelSettingsSize {
+    margin-left:5%;
+    width:90%;
+}
+
+.tagColor {
+    border-radius: 10%;
+    margin-top:2%;
+    margin-bottom:2%;
+    margin-left:2%;
+    width:5vh;
+    height:1vh;
+}
+
+.replaceTagColor {
+    padding-left:3%;
+}
+
+.sizeSprint {
+    width: 20%;
+    margin-right: 5%;
+}
+
+.sizeTitleSprint {
+    margin-top:15%;
+    padding:5%;
+}
+
+.sizeBlockSprint {
+    margin-top:20%;
+    padding-top: 50%;
+    padding-bottom: 50%;
+}
+
+/* .noscroll {
+    overflow: hidden;
+} */
+
+.scrollY {
+   overflow: auto;
+   max-height: 700px;
+}
+
+.formSettingsPostit {
+    
+    padding:10%;
+    width:100%;
+}
+
+.settingsPostit { 
+    margin-top: 15%;
+    margin-bottom: 15%;
+    background-color: rgb(119, 99, 116);
+    border: 0;
+    border-radius: 10px;
+    width:100%;
+    text-align: center;
+    border:1px solid transparent; 
+    -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    cursor: pointer;
+
+    font-family: "Open Sans";
+    font-weight: lighter;
+    color: white;
+}
+
+.resizeSettingsPostit {
+    margin-top: 0%;
+}
+
+.settingsPostit:hover {
+    background-color: rgb(84, 70, 87);
+}
+
+#modifyPostitStyle {
+    margin-top: 25%;
+    margin-bottom: 15%;
+    background-color: rgb(119, 99, 116);
+    border: 0;
+    border-radius: 10px;
+    width:100%;
+    text-align: center;
+    border:1px solid transparent; 
+    -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    cursor: pointer;
+
+    font-family: "Open Sans";
+    font-weight: lighter;
+    color: white;
+}
+
+#modifyPostitStyle:hover {
+    background-color: rgb(84, 70, 87);
+}
+
+.resizeCancelButton {
+    margin-top:0;
+    padding-top:0;
+}
+
+/* Sprint part */
+
+.addColumn {
+    margin-top:3%;
+    margin-left: 1%;
+    background-color: rgb(119, 99, 116);
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    border:1px solid transparent; 
+    -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
+    cursor: pointer;
+
+    font-family: "Open Sans";
+    font-weight: lighter;
+    color:white;
+}
+
+.addColumn:hover {
+    background:rgb(84, 70, 87);
+}
+
+.resizeColumnKanban {
+    margin-left:2%;
+    margin-bottom: 2%;
+    height: 50%;
+    width: 25%;
+}
+
+.backSprintButton {
+    background: transparent;
+    border: none !important;
+    width: 5%;
+    margin-top:2%;
+    margin-bottom: 2%;
+}
+
+.resizeTitlePostit {
+    font-size: large;
+    padding:5%;
+    margin-bottom: 50%;
+}
+
+.scroller {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.siteTitle {
+    color: white;
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-size: xx-large;
+    margin-top: 2%;
+    margin-left: 2%;
+    
+}
+.changeBottomButton {
+    margin-bottom: 5%;
 }

@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
+import Kanban from './Kanban';
 
 class Sprint extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { id: 1};
-  }
-
-  callAPI() {
-      /*fetch("http://localhost:9000/testAPI/buttonClicked")
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }))
-          .catch(err => err);*/
+    this.state = {
+      title: this.props.title,
+      kanban: <Kanban id_sprint={this.props.id} title={"kanban du sprint n°"+props.num}/>
+    };
   }
 
   render() {
     return (
-        <div>
-            Sprint: {this.state.id}
+      <div class="col"> 
+        <div class="row column justify-content-center sizeTitleSprint">
+          Sprint n°{this.state.title}
         </div>
+        <div class="row column justify-content-center sizeBlockSprint" onClick={() => this.props.accessKanban(this.state.kanban)}>
+          kanban
+        </div>
+      </div>
     )
   }
 }

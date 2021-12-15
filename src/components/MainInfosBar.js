@@ -1,44 +1,91 @@
 import React, { Component } from 'react';
-
 class MainInfosBar extends Component {
-
+  
   constructor(props) {
     super(props);
-    this.state = { title: 'title', date: 'date'};
-    this.handleTitleClick = this.handleTitleClick.bind(this);
-    this.handleDateClick = this.handleDateClick.bind(this);
+    this.state = {
+      title: 'Titre',
+      titleModifying: false,
+      titleInput: '',
+      date: "Date",
+      dateModifying: false,
+      dateInput: ''
+    };
+  }
+        
+  isDate = (date) => {
+    return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
   }
 
-  callAPI() {
-      /*fetch("http://localhost:9000/testAPI/buttonClicked")
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }))
-          .catch(err => err);*/
+  handleTitleModify = () => {
+      this.setState({titleModifying: true})
   }
 
-  handleTitleClick() {
-    this.setState({title: this.state.title + 'a'})
+  handleTitleSubmit = (event) => {
+    event.preventDefault()
+    const title = this.state.titleInput
+    if(title === '')
+      alert("Le titre ne peut pas être vide.")
+    else if(title.length > 20)
+      alert("Le titre ne peut pas faire plus de 20 caractères.")
+    else
+      this.setState({title: title, titleModifying: false, titleInput: ''})
   }
 
-  handleDateClick() {
-    this.setState({date: this.state.date + '1'})
+  handleTitleChange = (event) => {
+    const value = event.currentTarget.value
+    this.setState({titleInput: value})
+  }
+
+  handleDateModify = () => {
+    this.setState({dateModifying: true})
+  }
+
+  handleDateSubmit = (event) => {
+    event.preventDefault()
+    const date = this.state.dateInput
+    if(!this.isDate(date))
+      alert("Ce n'est pas le bon format. Essayez MM/JJ/AAAA")
+    else
+      this.setState({date: date, dateModifying: false, dateInput: ''})
+  }
+
+  handleDateChange = (event) => {
+    const value = event.currentTarget.value
+    this.setState({dateInput: value})
   }
 
   render() {
     return (
         <div class="col-9 headSprint">
-            <div class="row infoSprint characterFont"> 
-                <div class="col-6">
-                    <div class="row" id="title">
-                        {this.state.title} <button onClick={this.handleTitleClick}></button>
-                    </div>
+            <h3 class="siteTitle">
+              POSTFLEX
+            </h3>
+            {this.props.isProjectOpen === true && this.props.isConnected ?
+                <div class="row infoSprint characterFont"> 
+                  <div class="col-6">
+                      <div class="row textColor" id="title" hidden={this.state.titleModifying}>
+                          {this.state.title}
+                          <button class="modifyMainBarInfos inverseColor" onClick={this.handleTitleModify}><img src="../../pen.png" width="30px" /></button>
+                      </div>
+                          <form hidden={!this.state.titleModifying} onSubmit={this.handleTitleSubmit}>
+                            <input value={this.state.titleInput} onChange={this.handleTitleChange} type="text" placeholder={this.state.title} id="textMainBarInfos"></input>
+                            <button class="confirmMainBarInfos modifyMainBarInfos inverseColor"><img src="../../check.png" width="30px" /></button>
+                          </form>
+                  </div>
+                  <div class="col-6">
+                      <div class="row textColor" id="date" hidden={this.state.dateModifying}>
+                          {this.state.date}
+                          <button class="modifyMainBarInfos inverseColor" onClick={this.handleDateModify}><img src="../../pen.png" width="30px" /></button>
+                      </div>
+                          <form hidden={!this.state.dateModifying} onSubmit={this.handleDateSubmit}>
+                            <input value={this.state.dateInput} onChange={this.handleDateChange} type="text" placeholder={this.state.date} id="textMainBarInfos"></input>
+                            <button class="confirmMainBarInfos modifyMainBarInfos inverseColor"><img src="../../check.png" width="30px" /></button>
+                          </form>
+                  </div>
                 </div>
-                <div class="col-6">
-                    <div class="row" id="date">
-                        {this.state.date} <button onClick={this.handleDateClick}></button>
-                    </div>
-                </div> 
-            </div>
+                :
+                null}
         </div>
     )
   }
